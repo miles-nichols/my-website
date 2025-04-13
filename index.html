@@ -25,6 +25,16 @@
       #home.active #intro { display: block; }
       #projects.active #intro,
       #about.active #intro { display: none; }
+      /* Resume image styling */
+      .resume-image {
+        width: 100%;
+        border: 1px solid #ddd;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+      }
+      .resume-image:hover {
+        transform: scale(1.02);
+      }
     </style>
   </head>
   <body class="is-preload">
@@ -178,7 +188,7 @@
           <article class="post featured">
             <header class="major">
               <h2>About Me</h2>
-              <p>My education, skills, and professional experience</p>
+              <p>My education, work experience, and resume</p>
             </header>
           </article>
 
@@ -212,21 +222,17 @@
               </p>
             </article>
 
-            <!-- Resume Content -->
+            <!-- Resume Image -->
             <article>
               <header>
-                <h2>Professional Profile</h2>
+                <h2>My Resume</h2>
               </header>
-              <div class="box">
-                <p>Dedicated Software Engineering student seeking a summer 2025 internship to gain experience developing software within a professional environment. Passionate about problem-solving, Artificial Intelligence, and contributing to innovative tech solutions.</p>
-                
-                <h3>Projects</h3>
-                <ul>
-                  <li><strong>Grateful Gig</strong> - Designed and developed a social media platform where users share daily gratitude posts (Java, Android Studio, MySQL)</li>
-                  <li><strong>Embedded Systems</strong> - Led a team of 6 in designing a microcontroller-driven robot capable of autonomous course navigation (C, Python)</li>
-                  <li><strong>Fitness Tracker</strong> - Developed the front-end of a fitness tracking application using Java and XML with CI/CD integration</li>
-                </ul>
-              </div>
+              <a href="assets/files/resume.pdf" target="_blank" class="image fit">
+                <img src="images/resume-preview.jpg" alt="Miles Nichols Resume Preview" class="resume-image" />
+              </a>
+              <ul class="actions special">
+                <li><a href="assets/files/resume.pdf" class="button" target="_blank">Download Full Resume</a></li>
+              </ul>
             </article>
 
             <!-- Contact -->

@@ -50,6 +50,32 @@
       .resume-image:hover {
         transform: scale(1.02);
       }
+      /* Side by side layout */
+      .side-by-side-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2rem;
+        width: 100%;
+        margin-bottom: 2rem;
+      }
+      .side-by-side-article {
+        flex: 1;
+        min-width: 300px;
+      }
+      /* Adjust image sizing in side-by-side layout */
+      .side-by-side-article .image.fit img {
+        height: 200px;
+        object-fit: cover;
+      }
+      /* Responsive adjustments */
+      @media (max-width: 736px) {
+        .side-by-side-container {
+          flex-direction: column;
+        }
+        .side-by-side-article {
+          width: 100%;
+        }
+      }
     </style>
   </head>
   <body class="is-preload">
@@ -175,18 +201,18 @@
                   target="_blank"
                   >GitHub Repository</a
                 ><br /><br />
-				Designed and developed a social media platform centered around
-				daily gratitude sharing and community engagement. Created an
-				intuitive Android front-end using Java and XML in Android Studio,
-				focusing on user-friendly interactions and aesthetic design.
-				Engineered the back-end in Java using IntelliJ, integrating with a
-				MySQL database for secure and scalable data management. Built and
-				tested RESTful APIs, ensuring reliable client-server
-				communication, using Postman for thorough endpoint validation.
-				Employed Git for version control, maintaining clean commits and
-				collaborative development practices. Prioritized clean,
-				maintainable code through consistent testing and debugging
-				strategies, delivering a smooth user experience.
+                Designed and developed a social media platform centered around
+                daily gratitude sharing and community engagement. Created an
+                intuitive Android front-end using Java and XML in Android Studio,
+                focusing on user-friendly interactions and aesthetic design.
+                Engineered the back-end in Java using IntelliJ, integrating with a
+                MySQL database for secure and scalable data management. Built and
+                tested RESTful APIs, ensuring reliable client-server
+                communication, using Postman for thorough endpoint validation.
+                Employed Git for version control, maintaining clean commits and
+                collaborative development practices. Prioritized clean,
+                maintainable code through consistent testing and debugging
+                strategies, delivering a smooth user experience.
               </p>
             </article>
 
@@ -207,18 +233,19 @@
                   target="_blank"
                   >GitHub Repository</a
                 ><br /><br />
-				Led the design and development of a microcontroller-based robot
-				capable of autonomously navigating a predefined, unknown course.
-				Managed a team of six by streamlining collaboration through clear
-				task delegation, regular meetings, and consistent communication.
-				Designed and implemented control algorithms in C to process data
-				from integrated sensors—including ADCs, ultrasonic distance
-				sensors (ping), and servos to accurate movement and real-time
-				obstacle avoidance. To support development and debugging, built a
-				custom Python-based GUI that visualized sensor data and provided
-				live system feedback. System performance was refined through
-				iterative testing and calibration, improving both sensor accuracy
-				and motor coordination for reliable autonomous navigation.
+                Led the design and development of a microcontroller-based robot
+                capable of autonomously navigating a predefined, unknown course.
+                Managed a team of six by streamlining collaboration through clear
+                task delegation, regular meetings, and consistent communication.
+                Designed and implemented control algorithms in C to process data
+                from integrated sensors—including ADCs, ultrasonic distance
+                sensors (ping), and servos to accurate movement and real-time
+                obstacle avoidance. To support development and debugging, built a
+                custom Python-based GUI that visualized sensor data and provided
+                live system feedback. System performance was refined through
+                iterative testing and calibration, improving both sensor accuracy
+                and motor coordination for reliable autonomous navigation.
+              </p>
             </article>
 
             <!-- Fitness Tracker Project -->
@@ -346,22 +373,63 @@
           </article>
 
           <section class="posts">
-            <!-- Education -->
-            <article>
-              <header>
-                <h2>Education</h2>
-              </header>
-              <a href="#" class="image fit"
-                ><img src="images/pic06.jpg" alt="Iowa State University"
-              /></a>
-              <p>
-                <strong>Iowa State University</strong><br /><br />
-                <strong>Bachelor's in Software Engineering</strong><br />
-                Graduation: Fall 2026<br /><br />
-                <strong>Master's in Artificial Intelligence</strong><br />
-                Graduation: Fall 2027
-              </p>
-            </article>
+            <!-- First Row: Education and Contact Side by Side -->
+            <div class="side-by-side-container">
+              <!-- Education -->
+              <article class="side-by-side-article">
+                <header>
+                  <h2>Education</h2>
+                </header>
+                <a href="#" class="image fit"
+                  ><img src="images/pic06.jpg" alt="Iowa State University"
+                /></a>
+                <p>
+                  <strong>Iowa State University</strong><br /><br />
+                  <strong>Bachelor's in Software Engineering</strong><br />
+                  Graduation: Fall 2026<br /><br />
+                  <strong>Master's in Artificial Intelligence</strong><br />
+                  Graduation: Fall 2027
+                </p>
+              </article>
+
+              <!-- Contact -->
+              <article class="side-by-side-article">
+                <header>
+                  <h2>Contact</h2>
+                </header>
+                <div class="box">
+                  <h3>Let's Connect</h3>
+                  <ul class="alt">
+                    <li><strong>Email:</strong> miles@vollatech.com</li>
+                    <li><strong>Phone:</strong> (712) 355-8178</li>
+                    <li>
+                      <strong>LinkedIn:</strong>
+                      <a
+                        href="https://www.linkedin.com/in/miles-nichols"
+                        target="_blank"
+                        >linkedin.com/in/miles-nichols</a
+                      >
+                    </li>
+                    <li>
+                      <strong>GitHub:</strong>
+                      <a
+                        href="https://github.com/miles-nichols"
+                        target="_blank"
+                        >github.com/miles-nichols</a
+                      >
+                    </li>
+                    <li>
+                      <strong>Website:</strong>
+                      <a
+                        href="https://miles-nichols.github.io/my-website/"
+                        target="_blank"
+                        >miles-nichols.github.io</a
+                      >
+                    </li>
+                  </ul>
+                </div>
+              </article>
+            </div>
 
             <!-- Work Experience -->
             <article>
@@ -372,13 +440,12 @@
                 ><img src="images/crepe.png" alt="C'est La Crêpe"
               /></a>
               <p>
-                <strong>C’est La Crêpe – Food Trailer Team Lead</strong
-                ><br /><br />
+                <strong>C'est La Crêpe – Food Trailer Team Lead</strong><br /><br />
                 As a co-leader during the launch of
                 <a
                   href="https://www.instagram.com/cest.la.crepe.food.trailer/"
                   target="_blank"
-                  >C’est La Crêpe</a
+                  >C'est La Crêpe</a
                 >, a French-inspired food trailer based in Treynor, Iowa, I
                 played a pivotal role in establishing efficient operational
                 workflows and delivering exceptional customer experiences. I
@@ -416,42 +483,6 @@
                   >
                 </li>
               </ul>
-            </article>
-
-            <!-- Contact -->
-            <article>
-              <header>
-                <h2>Contact</h2>
-              </header>
-              <div class="box">
-                <h3>Let's Connect</h3>
-                <ul class="alt">
-                  <li><strong>Email:</strong> miles@vollatech.com</li>
-                  <li><strong>Phone:</strong> (712) 355-8178</li>
-                  <li>
-                    <strong>LinkedIn:</strong>
-                    <a
-                      href="https://www.linkedin.com/in/miles-nichols"
-                      target="_blank"
-                      >linkedin.com/in/miles-nichols</a
-                    >
-                  </li>
-                  <li>
-                    <strong>GitHub:</strong>
-                    <a href="https://github.com/miles-nichols" target="_blank"
-                      >github.com/miles-nichols</a
-                    >
-                  </li>
-                  <li>
-                    <strong>Website:</strong>
-                    <a
-                      href="https://miles-nichols.github.io/my-website/"
-                      target="_blank"
-                      >miles-nichols.github.io</a
-                    >
-                  </li>
-                </ul>
-              </div>
             </article>
           </section>
         </div>

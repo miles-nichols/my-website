@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+  <!-- [Previous head content remains exactly the same] -->
   <head>
     <title>Miles Nichols' Portfolio</title>
     <meta charset="utf-8" />
@@ -13,6 +14,7 @@
     /></noscript>
     <link rel="icon" href="images/M.jpg" type="image/jpg" />
     <style>
+      /* [Previous styles remain the same] */
       /* Page Section Management */
       .page-section {
         display: none;
@@ -50,36 +52,25 @@
       .resume-image:hover {
         transform: scale(1.02);
       }
-      /* Side by side layout */
-      .side-by-side-container {
-        display: flex;
-        flex-wrap: wrap;
+      /* New layout styles */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
         gap: 2rem;
         width: 100%;
+      }
+      .about-item {
         margin-bottom: 2rem;
-      }
-      .side-by-side-article {
-        flex: 1;
-        min-width: 300px;
-      }
-      /* Adjust image sizing in side-by-side layout */
-      .side-by-side-article .image.fit img {
-        height: 200px;
-        object-fit: cover;
       }
       /* Responsive adjustments */
       @media (max-width: 736px) {
-        .side-by-side-container {
-          flex-direction: column;
-        }
-        .side-by-side-article {
-          width: 100%;
+        .about-grid {
+          grid-template-columns: 1fr;
         }
       }
     </style>
   </head>
   <body class="is-preload">
-    <!-- Wrapper -->
     <div id="wrapper" class="fade-in">
       <!-- Intro -->
       <div id="intro">
@@ -360,223 +351,212 @@
         </div>
       </div>
 
-      <!-- ==================== -->
-      <!-- ABOUT PAGE CONTENT -->
-      <!-- ==================== -->
-      <div id="about" class="page-section">
-        <div id="main">
-          <article class="post featured">
-            <header class="major">
-              <h2>About Me</h2>
-              <p>My education, work experience, and resume</p>
-            </header>
-          </article>
-
-          <section class="posts">
-            <!-- First Row: Education and Contact Side by Side -->
-            <div class="side-by-side-container">
-              <!-- Education -->
-              <article class="side-by-side-article">
-                <header>
-                  <h2>Education</h2>
-                </header>
-                <a href="#" class="image fit"
-                  ><img src="images/pic06.jpg" alt="Iowa State University"
-                /></a>
-                <p>
-                  <strong>Iowa State University</strong><br /><br />
-                  <strong>Bachelor's in Software Engineering</strong><br />
-                  Graduation: Fall 2026<br /><br />
-                  <strong>Master's in Artificial Intelligence</strong><br />
-                  Graduation: Fall 2027
-                </p>
-              </article>
-
-              <!-- Contact -->
-              <article class="side-by-side-article">
-                <header>
-                  <h2>Contact</h2>
-                </header>
-                <div class="box">
-                  <h3>Let's Connect</h3>
-                  <ul class="alt">
-                    <li><strong>Email:</strong> miles@vollatech.com</li>
-                    <li><strong>Phone:</strong> (712) 355-8178</li>
-                    <li>
-                      <strong>LinkedIn:</strong>
-                      <a
-                        href="https://www.linkedin.com/in/miles-nichols"
-                        target="_blank"
-                        >linkedin.com/in/miles-nichols</a
-                      >
-                    </li>
-                    <li>
-                      <strong>GitHub:</strong>
-                      <a
-                        href="https://github.com/miles-nichols"
-                        target="_blank"
-                        >github.com/miles-nichols</a
-                      >
-                    </li>
-                    <li>
-                      <strong>Website:</strong>
-                      <a
-                        href="https://miles-nichols.github.io/my-website/"
-                        target="_blank"
-                        >miles-nichols.github.io</a
-                      >
-                    </li>
-                  </ul>
-                </div>
-              </article>
-            </div>
-
-            <!-- Work Experience -->
-            <article>
-              <header>
-                <h2>Work Experience</h2>
-              </header>
-              <a href="#" class="image fit"
-                ><img src="images/crepe.png" alt="C'est La Crêpe"
-              /></a>
-              <p>
-                <strong>C'est La Crêpe – Food Trailer Team Lead</strong><br /><br />
-                As a co-leader during the launch of
-                <a
-                  href="https://www.instagram.com/cest.la.crepe.food.trailer/"
-                  target="_blank"
-                  >C'est La Crêpe</a
-                >, a French-inspired food trailer based in Treynor, Iowa, I
-                played a pivotal role in establishing efficient operational
-                workflows and delivering exceptional customer experiences. I
-                supervised a team of employees, ensuring high-quality food
-                preparation and attentive service, which contributed to the
-                smooth day-to-day operations of the business. This role enhanced
-                my leadership skills, adaptability, and commitment to excellence
-                in a fast-paced, customer-centric environment.
-              </p>
-            </article>
-
-            <!-- Resume Image -->
-            <article>
-              <header>
-                <h2>My Resume</h2>
-              </header>
-              <a
-                href="assets/files/resume.pdf"
-                target="_blank"
-                class="image fit"
-              >
-                <img
-                  src="images/updated and w highschool.jpg"
-                  alt="Miles Nichols Resume Preview"
-                  class="resume-image"
-                />
-              </a>
-              <ul class="actions special">
-                <li>
-                  <a
-                    href="assets/files/resume.pdf"
-                    class="button"
-                    target="_blank"
-                    >View Full Resume</a
-                  >
-                </li>
-              </ul>
-            </article>
-          </section>
-        </div>
-      </div>
-
-      <!-- Footer -->
-      <footer id="footer">
-        <section class="split contact">
-          <section>
-            <h3>Phone</h3>
-            <p><a href="tel:7123558178">(712) 355-8178</a></p>
-          </section>
-          <section>
-            <h3>Email</h3>
-            <p><a href="mailto:miles@vollatech.com">miles@vollatech.com</a></p>
-          </section>
-          <section>
-            <h3>Social</h3>
-            <ul class="icons alt">
-              <li>
-                <a
-                  href="https://www.linkedin.com/in/miles-nichols"
-                  class="icon brands alt fa-linkedin"
-                  ><span class="label">LinkedIn</span></a
-                >
-              </li>
-              <li>
-                <a
-                  href="https://github.com/miles-nichols"
-                  class="icon brands alt fa-github"
-                  ><span class="label">GitHub</span></a
-                >
-              </li>
-            </ul>
-          </section>
-        </section>
-      </footer>
-    </div>
-
-    <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.scrollex.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
-
-    <!-- Page Navigation Script -->
-    <script>
-      $(document).ready(function () {
-        // Handle initial page load
-        function loadPage() {
-          var hash = window.location.hash.substring(1);
-          var validPages = ["home", "projects", "about"];
-
-          if (hash && validPages.includes(hash)) {
-            showPage(hash);
-          } else {
-            showPage("home");
-          }
-        }
-
-        // Show specific page
-        function showPage(page) {
-          $(".page-section").removeClass("active");
-          $("#" + page).addClass("active");
-          $(".links li").removeClass("active");
-          $('.links li a[data-page="' + page + '"]')
-            .parent()
-            .addClass("active");
-          window.scrollTo(0, 0);
-
-          // Update URL without reload
-          if (history.pushState) {
-            history.pushState(null, null, "#" + page);
-          }
-        }
-
-        // Handle nav link clicks
-        $(".page-link").click(function (e) {
-          e.preventDefault();
-          var page = $(this).data("page");
-          showPage(page);
-        });
-
-        // Handle browser back/forward
-        window.addEventListener("popstate", function () {
-          loadPage();
-        });
-
-        // Initial load
-        loadPage();
-      });
-    </script>
-  </body>
-</html>
+        <!-- ==================== -->
+    <!-- ABOUT PAGE CONTENT -->
+    <!-- ==================== -->
+    <div id="about" class="page-section">
+		<div id="main">
+		  <article class="post featured">
+			<header class="major">
+			  <h2>About Me</h2>
+			  <p>My education, work experience, and resume</p>
+			</header>
+		  </article>
+  
+		  <div class="about-grid">
+			<!-- Top Left: Resume -->
+			<article class="about-item">
+			  <header>
+				<h2>My Resume</h2>
+			  </header>
+			  <a href="assets/files/resume.pdf" target="_blank" class="image fit">
+				<img
+				  src="images/updated and w highschool.jpg"
+				  alt="Miles Nichols Resume Preview"
+				  class="resume-image"
+				/>
+			  </a>
+			  <ul class="actions special">
+				<li>
+				  <a href="assets/files/resume.pdf" class="button" target="_blank"
+					>View Full Resume</a
+				  >
+				</li>
+			  </ul>
+			</article>
+  
+			<!-- Top Right: Work Experience -->
+			<article class="about-item">
+			  <header>
+				<h2>Work Experience</h2>
+			  </header>
+			  <a href="#" class="image fit"
+				><img src="images/crepe.png" alt="C'est La Crêpe"
+			  /></a>
+			  <p>
+				<strong>C'est La Crêpe – Food Trailer Team Lead</strong><br /><br />
+				As a co-leader during the launch of
+				<a
+				  href="https://www.instagram.com/cest.la.crepe.food.trailer/"
+				  target="_blank"
+				  >C'est La Crêpe</a
+				>, a French-inspired food trailer based in Treynor, Iowa, I
+				played a pivotal role in establishing efficient operational
+				workflows and delivering exceptional customer experiences. I
+				supervised a team of employees, ensuring high-quality food
+				preparation and attentive service, which contributed to the
+				smooth day-to-day operations of the business. This role enhanced
+				my leadership skills, adaptability, and commitment to excellence
+				in a fast-paced, customer-centric environment.
+			  </p>
+			</article>
+  
+			<!-- Bottom Left: Education -->
+			<article class="about-item">
+			  <header>
+				<h2>Education</h2>
+			  </header>
+			  <a href="#" class="image fit"
+				><img src="images/pic06.jpg" alt="Iowa State University"
+			  /></a>
+			  <p>
+				<strong>Iowa State University</strong><br /><br />
+				<strong>Bachelor's in Software Engineering</strong><br />
+				Graduation: Fall 2026<br /><br />
+				<strong>Master's in Artificial Intelligence</strong><br />
+				Graduation: Fall 2027
+			  </p>
+			</article>
+  
+			<!-- Bottom Right: Contact -->
+			<article class="about-item">
+			  <header>
+				<h2>Contact</h2>
+			  </header>
+			  <div class="box">
+				<h3>Let's Connect</h3>
+				<ul class="alt">
+				  <li><strong>Email:</strong> miles@vollatech.com</li>
+				  <li><strong>Phone:</strong> (712) 355-8178</li>
+				  <li>
+					<strong>LinkedIn:</strong>
+					<a
+					  href="https://www.linkedin.com/in/miles-nichols"
+					  target="_blank"
+					  >linkedin.com/in/miles-nichols</a
+					>
+				  </li>
+				  <li>
+					<strong>GitHub:</strong>
+					<a href="https://github.com/miles-nichols" target="_blank"
+					  >github.com/miles-nichols</a
+					>
+				  </li>
+				  <li>
+					<strong>Website:</strong>
+					<a
+					  href="https://miles-nichols.github.io/my-website/"
+					  target="_blank"
+					  >miles-nichols.github.io</a
+					>
+				  </li>
+				</ul>
+			  </div>
+			</article>
+		  </div>
+		</div>
+	  </div>
+  
+	  <!-- [Footer and scripts remain exactly the same] -->
+	  <!-- Footer -->
+	  <footer id="footer">
+		<section class="split contact">
+		  <section>
+			<h3>Phone</h3>
+			<p><a href="tel:7123558178">(712) 355-8178</a></p>
+		  </section>
+		  <section>
+			<h3>Email</h3>
+			<p><a href="mailto:miles@vollatech.com">miles@vollatech.com</a></p>
+		  </section>
+		  <section>
+			<h3>Social</h3>
+			<ul class="icons alt">
+			  <li>
+				<a
+				  href="https://www.linkedin.com/in/miles-nichols"
+				  class="icon brands alt fa-linkedin"
+				  ><span class="label">LinkedIn</span></a
+				>
+			  </li>
+			  <li>
+				<a
+				  href="https://github.com/miles-nichols"
+				  class="icon brands alt fa-github"
+				  ><span class="label">GitHub</span></a
+				>
+			  </li>
+			</ul>
+		  </section>
+		</section>
+	  </footer>
+	</div>
+  
+	<!-- Scripts -->
+	<script src="assets/js/jquery.min.js"></script>
+	<script src="assets/js/jquery.scrollex.min.js"></script>
+	<script src="assets/js/jquery.scrolly.min.js"></script>
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+  
+	<!-- Page Navigation Script -->
+	<script>
+	  $(document).ready(function () {
+		// Handle initial page load
+		function loadPage() {
+		  var hash = window.location.hash.substring(1);
+		  var validPages = ["home", "projects", "about"];
+  
+		  if (hash && validPages.includes(hash)) {
+			showPage(hash);
+		  } else {
+			showPage("home");
+		  }
+		}
+  
+		// Show specific page
+		function showPage(page) {
+		  $(".page-section").removeClass("active");
+		  $("#" + page).addClass("active");
+		  $(".links li").removeClass("active");
+		  $('.links li a[data-page="' + page + '"]')
+			.parent()
+			.addClass("active");
+		  window.scrollTo(0, 0);
+  
+		  // Update URL without reload
+		  if (history.pushState) {
+			history.pushState(null, null, "#" + page);
+		  }
+		}
+  
+		// Handle nav link clicks
+		$(".page-link").click(function (e) {
+		  e.preventDefault();
+		  var page = $(this).data("page");
+		  showPage(page);
+		});
+  
+		// Handle browser back/forward
+		window.addEventListener("popstate", function () {
+		  loadPage();
+		});
+  
+		// Initial load
+		loadPage();
+	  });
+	</script>
+	</body>
+  </html>

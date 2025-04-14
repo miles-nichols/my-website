@@ -1,21 +1,16 @@
 <!DOCTYPE html>
 <html>
-  <!-- [Previous head content remains exactly the same] -->
   <head>
     <title>Miles Nichols' Portfolio</title>
     <meta charset="utf-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1, user-scalable=no"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="assets/css/main.css" />
-    <noscript
-      ><link rel="stylesheet" href="assets/css/noscript.css"
-    /></noscript>
+    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
     <link rel="icon" href="images/M.jpg" type="image/jpg" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <style>
-      /* [Previous styles remain the same] */
-      /* Page Section Management */
+      /* Original styles */
       .page-section {
         display: none;
       }
@@ -24,25 +19,13 @@
         animation: fadeIn 0.5s ease;
       }
       @keyframes fadeIn {
-        from {
-          opacity: 0;
-        }
-        to {
-          opacity: 1;
-        }
+        from { opacity: 0; }
+        to { opacity: 1; }
       }
-      /* Adjust intro for home page only */
-      #intro {
-        margin-bottom: 2rem;
-      }
-      #home.active #intro {
-        display: block;
-      }
+      #intro { margin-bottom: 2rem; }
+      #home.active #intro { display: block; }
       #projects.active #intro,
-      #about.active #intro {
-        display: none;
-      }
-      /* Resume image styling */
+      #about.active #intro { display: none; }
       .resume-image {
         width: 100%;
         border: 1px solid #ddd;
@@ -52,7 +35,6 @@
       .resume-image:hover {
         transform: scale(1.02);
       }
-      /* New layout styles */
       .about-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
@@ -62,15 +44,96 @@
       .about-item {
         margin-bottom: 2rem;
       }
-      /* Responsive adjustments */
       @media (max-width: 736px) {
         .about-grid {
           grid-template-columns: 1fr;
         }
       }
+
+      /* New UI Enhancements */
+      /* 1. Holographic Card Effect */
+      .post, .about-item, article {
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.2);
+        box-shadow: 0 0 20px rgba(81, 203, 238, 0.3);
+        transition: all 0.3s;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .post:hover, .about-item:hover, article:hover {
+        transform: translateY(-5px) rotateX(10deg);
+        box-shadow: 0 15px 30px rgba(81, 203, 238, 0.5);
+      }
+
+      /* 2. Binary Rain Background */
+      #binary-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.15;
+      }
+
+      /* 3. Circuit Board Navigation */
+      #nav {
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0,5 L100,5" stroke="%2351CBEE" stroke-width="0.5" stroke-dasharray="5,2"/></svg>') center center no-repeat;
+        background-size: 80% 100%;
+      }
+      #nav .links {
+        background: rgba(10,25,30,0.8);
+        padding: 0 20px;
+      }
+      #nav a:hover {
+        color: #51CBEE !important;
+      }
+
+      /* 4. Kinetic Typography Headers */
+      .major h2, .posts h2 {
+        overflow: hidden;
+      }
+      .major h2 span, .posts h2 span {
+        display: inline-block;
+      }
+
+      /* 5. Microinteraction Buttons */
+      .button, .actions.special .button {
+        background: linear-gradient(90deg, #6e48aa 0%, #9d50bb 100%);
+        background-size: 200% auto;
+        transition: all 0.4s;
+        border: none;
+      }
+      .button:hover {
+        background-position: 100% 0;
+        transform: translateY(-2px) scale(1.02);
+      }
+      .button:active {
+        transform: translateY(1px) scale(0.98);
+      }
+
+      /* 6. Scroll-Triggered Animations */
+      .post, .about-item, article {
+        opacity: 0;
+        transform: translateY(20px);
+        will-change: transform, opacity;
+      }
+
+      @media (prefers-reduced-motion) {
+        .post, .about-item, article,
+        .button:hover, .resume-image:hover {
+          transform: none !important;
+          animation: none !important;
+          transition: none !important;
+        }
+      }
     </style>
   </head>
   <body class="is-preload">
+    <!-- Binary Rain Canvas -->
+    <canvas id="binary-canvas"></canvas>
+
     <div id="wrapper" class="fade-in">
       <!-- Intro -->
       <div id="intro">
@@ -137,9 +200,7 @@
                 professionally.
               </p>
             </header>
-            <a href="#" class="image main"
-              ><img src="images/image-5.jpg" alt=""
-            /></a>
+            <a href="#" class="image main"><img src="images/image-5.jpg" alt="" /></a>
             <ul class="actions special">
               <li>
                 <a
@@ -245,9 +306,7 @@
                 <span class="date">August 2024 - December 2024</span>
                 <h2><a href="#">Fitness Tracker</a></h2>
               </header>
-              <a href="#" class="image fit"
-                ><img src="images/fitness.png" alt=""
-              /></a>
+              <a href="#" class="image fit"><img src="images/fitness.png" alt="" /></a>
               <p>
                 <a
                   href="https://www.youtube.com/watch?v=gebaKdfty88&ab_channel=mon"
@@ -351,212 +410,282 @@
         </div>
       </div>
 
-        <!-- ==================== -->
-    <!-- ABOUT PAGE CONTENT -->
-    <!-- ==================== -->
-    <div id="about" class="page-section">
-		<div id="main">
-		  <article class="post featured">
-			<header class="major">
-			  <h2>About Me</h2>
-			  <p>My education, work experience, and resume</p>
-			</header>
-		  </article>
-  
-		  <div class="about-grid">
-			<!-- Top Left: Resume -->
-			<article class="about-item">
-			  <header>
-				<h2>My Resume</h2>
-			  </header>
-			  <a href="assets/files/resume.pdf" target="_blank" class="image fit">
-				<img
-				  src="images/updated and w highschool.jpg"
-				  alt="Miles Nichols Resume Preview"
-				  class="resume-image"
-				/>
-			  </a>
-			  <ul class="actions special">
-				<li>
-				  <a href="assets/files/resume.pdf" class="button" target="_blank"
-					>View Full Resume</a
-				  >
-				</li>
-			  </ul>
-			</article>
-  
-			<!-- Top Right: Work Experience -->
-			<article class="about-item">
-			  <header>
-				<h2>Work Experience</h2>
-			  </header>
-			  <a href="#" class="image fit"
-				><img src="images/crepe.png" alt="C'est La Crêpe"
-			  /></a>
-			  <p>
-				<strong>C'est La Crêpe – Food Trailer Team Lead</strong><br /><br />
-				As a co-leader during the launch of
-				<a
-				  href="https://www.instagram.com/cest.la.crepe.food.trailer/"
-				  target="_blank"
-				  >C'est La Crêpe</a
-				>, a French-inspired food trailer based in Treynor, Iowa, I
-				played a pivotal role in establishing efficient operational
-				workflows and delivering exceptional customer experiences. I
-				supervised a team of employees, ensuring high-quality food
-				preparation and attentive service, which contributed to the
-				smooth day-to-day operations of the business. This role enhanced
-				my leadership skills, adaptability, and commitment to excellence
-				in a fast-paced, customer-centric environment.
-			  </p>
-			</article>
-  
-			<!-- Bottom Left: Education -->
-			<article class="about-item">
-			  <header>
-				<h2>Education</h2>
-			  </header>
-			  <a href="#" class="image fit"
-				><img src="images/pic06.jpg" alt="Iowa State University"
-			  /></a>
-			  <p>
-				<strong>Iowa State University</strong><br /><br />
-				<strong>Bachelor's in Software Engineering</strong><br />
-				Graduation: Fall 2026<br /><br />
-				<strong>Master's in Artificial Intelligence</strong><br />
-				Graduation: Fall 2027
-			  </p>
-			</article>
-  
-			<!-- Bottom Right: Contact -->
-			<article class="about-item">
-			  <header>
-				<h2>Contact</h2>
-			  </header>
-			  <div class="box">
-				<h3>Let's Connect</h3>
-				<ul class="alt">
-				  <li><strong>Email:</strong> miles@vollatech.com</li>
-				  <li><strong>Phone:</strong> (712) 355-8178</li>
-				  <li>
-					<strong>LinkedIn:</strong>
-					<a
-					  href="https://www.linkedin.com/in/miles-nichols"
-					  target="_blank"
-					  >linkedin.com/in/miles-nichols</a
-					>
-				  </li>
-				  <li>
-					<strong>GitHub:</strong>
-					<a href="https://github.com/miles-nichols" target="_blank"
-					  >github.com/miles-nichols</a
-					>
-				  </li>
-				  <li>
-					<strong>Website:</strong>
-					<a
-					  href="https://miles-nichols.github.io/my-website/"
-					  target="_blank"
-					  >miles-nichols.github.io</a
-					>
-				  </li>
-				</ul>
-			  </div>
-			</article>
-		  </div>
-		</div>
-	  </div>
-  
-	  <!-- [Footer and scripts remain exactly the same] -->
-	  <!-- Footer -->
-	  <footer id="footer">
-		<section class="split contact">
-		  <section>
-			<h3>Phone</h3>
-			<p><a href="tel:7123558178">(712) 355-8178</a></p>
-		  </section>
-		  <section>
-			<h3>Email</h3>
-			<p><a href="mailto:miles@vollatech.com">miles@vollatech.com</a></p>
-		  </section>
-		  <section>
-			<h3>Social</h3>
-			<ul class="icons alt">
-			  <li>
-				<a
-				  href="https://www.linkedin.com/in/miles-nichols"
-				  class="icon brands alt fa-linkedin"
-				  ><span class="label">LinkedIn</span></a
-				>
-			  </li>
-			  <li>
-				<a
-				  href="https://github.com/miles-nichols"
-				  class="icon brands alt fa-github"
-				  ><span class="label">GitHub</span></a
-				>
-			  </li>
-			</ul>
-		  </section>
-		</section>
-	  </footer>
-	</div>
-  
-	<!-- Scripts -->
-	<script src="assets/js/jquery.min.js"></script>
-	<script src="assets/js/jquery.scrollex.min.js"></script>
-	<script src="assets/js/jquery.scrolly.min.js"></script>
-	<script src="assets/js/browser.min.js"></script>
-	<script src="assets/js/breakpoints.min.js"></script>
-	<script src="assets/js/util.js"></script>
-	<script src="assets/js/main.js"></script>
-  
-	<!-- Page Navigation Script -->
-	<script>
-	  $(document).ready(function () {
-		// Handle initial page load
-		function loadPage() {
-		  var hash = window.location.hash.substring(1);
-		  var validPages = ["home", "projects", "about"];
-  
-		  if (hash && validPages.includes(hash)) {
-			showPage(hash);
-		  } else {
-			showPage("home");
-		  }
-		}
-  
-		// Show specific page
-		function showPage(page) {
-		  $(".page-section").removeClass("active");
-		  $("#" + page).addClass("active");
-		  $(".links li").removeClass("active");
-		  $('.links li a[data-page="' + page + '"]')
-			.parent()
-			.addClass("active");
-		  window.scrollTo(0, 0);
-  
-		  // Update URL without reload
-		  if (history.pushState) {
-			history.pushState(null, null, "#" + page);
-		  }
-		}
-  
-		// Handle nav link clicks
-		$(".page-link").click(function (e) {
-		  e.preventDefault();
-		  var page = $(this).data("page");
-		  showPage(page);
-		});
-  
-		// Handle browser back/forward
-		window.addEventListener("popstate", function () {
-		  loadPage();
-		});
-  
-		// Initial load
-		loadPage();
-	  });
-	</script>
-	</body>
-  </html>
+      <!-- ==================== -->
+      <!-- ABOUT PAGE CONTENT -->
+      <!-- ==================== -->
+      <div id="about" class="page-section">
+        <div id="main">
+          <article class="post featured">
+            <header class="major">
+              <h2>About Me</h2>
+              <p>My education, work experience, and resume</p>
+            </header>
+          </article>
+
+          <div class="about-grid">
+            <!-- Top Left: Resume -->
+            <article class="about-item">
+              <header>
+                <h2>My Resume</h2>
+              </header>
+              <a href="assets/files/resume.pdf" target="_blank" class="image fit">
+                <img
+                  src="images/updated and w highschool.jpg"
+                  alt="Miles Nichols Resume Preview"
+                  class="resume-image"
+                />
+              </a>
+              <ul class="actions special">
+                <li>
+                  <a href="assets/files/resume.pdf" class="button" target="_blank"
+                    >View Full Resume</a
+                  >
+                </li>
+              </ul>
+            </article>
+
+            <!-- Top Right: Work Experience -->
+            <article class="about-item">
+              <header>
+                <h2>Work Experience</h2>
+              </header>
+              <a href="#" class="image fit"
+                ><img src="images/crepe.png" alt="C'est La Crêpe"
+              /></a>
+              <p>
+                <strong>C'est La Crêpe – Food Trailer Team Lead</strong><br /><br />
+                As a co-leader during the launch of
+                <a
+                  href="https://www.instagram.com/cest.la.crepe.food.trailer/"
+                  target="_blank"
+                  >C'est La Crêpe</a
+                >, a French-inspired food trailer based in Treynor, Iowa, I
+                played a pivotal role in establishing efficient operational
+                workflows and delivering exceptional customer experiences. I
+                supervised a team of employees, ensuring high-quality food
+                preparation and attentive service, which contributed to the
+                smooth day-to-day operations of the business. This role enhanced
+                my leadership skills, adaptability, and commitment to excellence
+                in a fast-paced, customer-centric environment.
+              </p>
+            </article>
+
+            <!-- Bottom Left: Education -->
+            <article class="about-item">
+              <header>
+                <h2>Education</h2>
+              </header>
+              <a href="#" class="image fit"
+                ><img src="images/pic06.jpg" alt="Iowa State University"
+              /></a>
+              <p>
+                <strong>Iowa State University</strong><br /><br />
+                <strong>Bachelor's in Software Engineering</strong><br />
+                Graduation: Fall 2026<br /><br />
+                <strong>Master's in Artificial Intelligence</strong><br />
+                Graduation: Fall 2027
+              </p>
+            </article>
+
+            <!-- Bottom Right: Contact -->
+            <article class="about-item">
+              <header>
+                <h2>Contact</h2>
+              </header>
+              <div class="box">
+                <h3>Let's Connect</h3>
+                <ul class="alt">
+                  <li><strong>Email:</strong> miles@vollatech.com</li>
+                  <li><strong>Phone:</strong> (712) 355-8178</li>
+                  <li>
+                    <strong>LinkedIn:</strong>
+                    <a
+                      href="https://www.linkedin.com/in/miles-nichols"
+                      target="_blank"
+                      >linkedin.com/in/miles-nichols</a
+                    >
+                  </li>
+                  <li>
+                    <strong>GitHub:</strong>
+                    <a href="https://github.com/miles-nichols" target="_blank"
+                      >github.com/miles-nichols</a
+                    >
+                  </li>
+                  <li>
+                    <strong>Website:</strong>
+                    <a
+                      href="https://miles-nichols.github.io/my-website/"
+                      target="_blank"
+                      >miles-nichols.github.io</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </article>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer id="footer">
+        <section class="split contact">
+          <section>
+            <h3>Phone</h3>
+            <p><a href="tel:7123558178">(712) 355-8178</a></p>
+          </section>
+          <section>
+            <h3>Email</h3>
+            <p><a href="mailto:miles@vollatech.com">miles@vollatech.com</a></p>
+          </section>
+          <section>
+            <h3>Social</h3>
+            <ul class="icons alt">
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/miles-nichols"
+                  class="icon brands alt fa-linkedin"
+                  ><span class="label">LinkedIn</span></a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://github.com/miles-nichols"
+                  class="icon brands alt fa-github"
+                  ><span class="label">GitHub</span></a
+                >
+              </li>
+            </ul>
+          </section>
+        </section>
+      </footer>
+    </div>
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/browser.min.js"></script>
+    <script src="assets/js/breakpoints.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+
+    <!-- Enhanced UI Scripts -->
+    <script>
+      // Binary Rain Background
+      const canvas = document.getElementById('binary-canvas');
+      const ctx = canvas.getContext('2d');
+      
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+      
+      const binary = "01";
+      const fontSize = 15;
+      const columns = Math.floor(canvas.width / (fontSize * 0.6));
+      const drops = Array(columns).fill(1);
+      
+      function drawBinaryRain() {
+        ctx.fillStyle = 'rgba(0, 10, 20, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.fillStyle = '#51CBEE';
+        ctx.font = `${fontSize}px monospace`;
+        
+        drops.forEach((y, i) => {
+          const text = binary.charAt(Math.floor(Math.random() * binary.length));
+          const x = i * fontSize * 0.6;
+          ctx.fillText(text, x, y * fontSize);
+          
+          if (y * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+          drops[i]++;
+        });
+      }
+      
+      setInterval(drawBinaryRain, 50);
+
+      // Kinetic Typography - Split headers into spans
+      function setupKineticText() {
+        document.querySelectorAll('.major h2, .posts h2').forEach(header => {
+          header.innerHTML = header.textContent.split('').map(char => 
+            `<span style="opacity:0;transform:translateY(20px)">${char === ' ' ? '&nbsp;' : char}</span>`
+          ).join('');
+        });
+      }
+
+      // Initialize GSAP animations
+      document.addEventListener('DOMContentLoaded', () => {
+        gsap.registerPlugin(ScrollTrigger);
+        setupKineticText();
+        
+        // Animate kinetic headers
+        gsap.to(".major h2 span, .posts h2 span", {
+          y: 0,
+          opacity: 1,
+          stagger: 0.05,
+          duration: 0.5,
+          scrollTrigger: {
+            trigger: ".major h2, .posts h2",
+            start: "top 80%"
+          }
+        });
+        
+        // Animate cards on scroll
+        gsap.utils.toArray(".post, .about-item, article").forEach(item => {
+          gsap.to(item, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            scrollTrigger: {
+              trigger: item,
+              start: "top 90%"
+            }
+          });
+        });
+      });
+
+      // Original page navigation script
+      $(document).ready(function() {
+        function loadPage() {
+          var hash = window.location.hash.substring(1);
+          var validPages = ['home', 'projects', 'about'];
+          
+          if (hash && validPages.includes(hash)) {
+            showPage(hash);
+          } else {
+            showPage('home');
+          }
+        }
+        
+        function showPage(page) {
+          $('.page-section').removeClass('active');
+          $('#' + page).addClass('active');
+          $('.links li').removeClass('active');
+          $('.links li a[data-page="' + page + '"]').parent().addClass('active');
+          window.scrollTo(0, 0);
+          
+          if (history.pushState) {
+            history.pushState(null, null, '#' + page);
+          }
+        }
+        
+        $('.page-link').click(function(e) {
+          e.preventDefault();
+          var page = $(this).data('page');
+          showPage(page);
+        });
+        
+        window.addEventListener('popstate', function() {
+          loadPage();
+        });
+        
+        loadPage();
+      });
+    </script>
+  </body>
+</html>

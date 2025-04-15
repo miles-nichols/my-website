@@ -3,22 +3,32 @@
   <head>
     <title>Miles Nichols' Portfolio</title>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, user-scalable=no"
+    />
     <link rel="stylesheet" href="assets/css/main.css" />
-    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <noscript
+      ><link rel="stylesheet" href="assets/css/noscript.css"
+    /></noscript>
     <link rel="icon" href="images/M.jpg" type="image/jpg" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <style>
       /* Color Palette */
       :root {
-        --primary: #A67B5B;           /* Medium brown (headings, accents) */
-        --secondary: #C89B7B;         /* Lighter brown (highlights) */
-        --accent: #E6D8C4;            /* Beige (card backgrounds) */
-        --background: #33292F;        /* Dark Brown (main background) */
-        --text-color: #4A3B35;        /* Dark brown (main text) */
-        --text-color-light: #736357;  /* Lighter text (descriptions) */
-        --card-background: rgba(230, 216, 196, 0.2); /* Beige with transparency for cards */
+        --primary: #a67b5b; /* Medium brown (headings, accents) */
+        --secondary: #c89b7b; /* Lighter brown (highlights) */
+        --accent: #e6d8c4; /* Beige (card backgrounds) */
+        --background: #33292f; /* Dark Brown (main background) */
+        --text-color: #4a3b35; /* Dark brown (main text) */
+        --text-color-light: #736357; /* Lighter text (descriptions) */
+        --card-background: rgba(
+          230,
+          216,
+          196,
+          0.2
+        ); /* Beige with transparency for cards */
       }
 
       body {
@@ -28,12 +38,15 @@
         line-height: 1.6;
       }
 
-      h1, h2, h3 {
+      h1,
+      h2,
+      h3 {
         color: var(--primary);
         font-weight: bold;
       }
 
-      p, li {
+      p,
+      li {
         color: var(--text-color-light);
       }
 
@@ -46,13 +59,21 @@
         animation: fadeIn 0.5s ease;
       }
       @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
+        from {
+          opacity: 0;
+        }
+        to {
+          opacity: 1;
+        }
       }
-      #intro { margin-bottom: 2rem; }
+      #intro {
+        margin-bottom: 2rem;
+      }
       #home.active #intro,
       #projects.active #intro,
-      #about.active #intro { display: block; }
+      #about.active #intro {
+        display: block;
+      }
       .resume-image {
         width: 100%;
         border: 1px solid #ddd;
@@ -79,7 +100,9 @@
 
       /* New UI Enhancements (Color Adjustments) */
       /* 1. Holographic Card Effect */
-      .post, .about-item, article {
+      .post,
+      .about-item,
+      article {
         background: var(--card-background);
         backdrop-filter: blur(10px);
         border: 1px solid rgba(166, 123, 91, 0.3); /* Brown border */
@@ -88,7 +111,9 @@
         border-radius: 10px;
         overflow: hidden;
       }
-      .post:hover, .about-item:hover, article:hover {
+      .post:hover,
+      .about-item:hover,
+      article:hover {
         transform: translateY(-5px) rotateX(10deg);
         box-shadow: 0 10px 20px rgba(166, 123, 91, 0.4); /* Stronger brown shadow */
       }
@@ -106,7 +131,8 @@
 
       /* 3. Circuit Board Navigation */
       #nav {
-        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0,5 L100,5" stroke="%23A67B5B" stroke-width="0.5" stroke-dasharray="5,2"/></svg>') center center no-repeat;
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0,5 L100,5" stroke="%23A67B5B" stroke-width="0.5" stroke-dasharray="5,2"/></svg>')
+          center center no-repeat;
         background-size: 80% 100%;
       }
       #nav .links {
@@ -121,17 +147,24 @@
       }
 
       /* 4. Kinetic Typography Headers */
-      .major h2, .posts h2 {
+      .major h2,
+      .posts h2 {
         overflow: hidden;
         color: var(--primary);
       }
-      .major h2 span, .posts h2 span {
+      .major h2 span,
+      .posts h2 span {
         display: inline-block;
       }
 
       /* 5. Microinteraction Buttons */
-      .button, .actions.special .button {
-        background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+      .button,
+      .actions.special .button {
+        background: linear-gradient(
+          90deg,
+          var(--primary) 0%,
+          var(--secondary) 100%
+        );
         background-size: 150% auto;
         background-position: left center;
         color: #fff;
@@ -148,19 +181,34 @@
       }
 
       /* 6. Scroll-Triggered Animations */
-      .post, .about-item, article {
+      .post,
+      .about-item,
+      article {
         opacity: 0;
         transform: translateY(20px);
         will-change: transform, opacity;
       }
 
       @media (prefers-reduced-motion) {
-        .post, .about-item, article,
-        .button:hover, .resume-image:hover {
+        .post,
+        .about-item,
+        article,
+        .button:hover,
+        .resume-image:hover {
           transform: none !important;
           animation: none !important;
           transition: none !important;
         }
+      }
+
+      #binary-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.7;
       }
     </style>
   </head>
@@ -235,7 +283,9 @@
                 professionally.
               </p>
             </header>
-            <a href="#" class="image main"><img src="images/image-5.jpg" alt="" /></a>
+            <a href="#" class="image main"
+              ><img src="images/image-5.jpg" alt=""
+            /></a>
             <ul class="actions special">
               <li>
                 <a
@@ -290,16 +340,16 @@
                 ><br /><br />
                 Designed and developed a social media platform centered around
                 daily gratitude sharing and community engagement. Created an
-                intuitive Android front-end using Java and XML in Android Studio,
-                focusing on user-friendly interactions and aesthetic design.
-                Engineered the back-end in Java using IntelliJ, integrating with a
-                MySQL database for secure and scalable data management. Built and
-                tested RESTful APIs, ensuring reliable client-server
-                communication, using Postman for thorough endpoint validation.
-                Employed Git for version control, maintaining clean commits and
-                collaborative development practices. Prioritized clean,
-                maintainable code through consistent testing and debugging
-                strategies, delivering a smooth user experience.
+                intuitive Android front-end using Java and XML in Android
+                Studio, focusing on user-friendly interactions and aesthetic
+                design. Engineered the back-end in Java using IntelliJ,
+                integrating with a MySQL database for secure and scalable data
+                management. Built and tested RESTful APIs, ensuring reliable
+                client-server communication, using Postman for thorough endpoint
+                validation. Employed Git for version control, maintaining clean
+                commits and collaborative development practices. Prioritized
+                clean, maintainable code through consistent testing and
+                debugging strategies, delivering a smooth user experience.
               </p>
             </article>
 
@@ -321,23 +371,22 @@
                   >GitHub Repository</a
                 >
                 |
-                <a
-                  href="assets/files/proposal.docx"
-                  target="_blank"
+                <a href="assets/files/proposal.docx" target="_blank"
                   >Project Proposal</a
                 ><br /><br />
                 Led the design and development of a microcontroller-based robot
                 capable of autonomously navigating a predefined, unknown course.
-                Managed a team of six by streamlining collaboration through clear
-                task delegation, regular meetings, and consistent communication.
-                Designed and implemented control algorithms in C to process data
-                from integrated sensors—including ADCs, ultrasonic distance
-                sensors (ping), and servos to accurate movement and real-time
-                obstacle avoidance. To support development and debugging, built a
-                custom Python-based GUI that visualized sensor data and provided
-                live system feedback. System performance was refined through
-                iterative testing and calibration, improving both sensor accuracy
-                and motor coordination for reliable autonomous navigation.
+                Managed a team of six by streamlining collaboration through
+                clear task delegation, regular meetings, and consistent
+                communication. Designed and implemented control algorithms in C
+                to process data from integrated sensors—including ADCs,
+                ultrasonic distance sensors (ping), and servos to accurate
+                movement and real-time obstacle avoidance. To support
+                development and debugging, built a custom Python-based GUI that
+                visualized sensor data and provided live system feedback. System
+                performance was refined through iterative testing and
+                calibration, improving both sensor accuracy and motor
+                coordination for reliable autonomous navigation.
               </p>
             </article>
 
@@ -347,7 +396,9 @@
                 <span class="date">August 2024 - December 2024</span>
                 <h2><a href="#">Fitness Tracker</a></h2>
               </header>
-              <a href="#" class="image fit"><img src="images/fitness.png" alt="" /></a>
+              <a href="#" class="image fit"
+                ><img src="images/fitness.png" alt=""
+              /></a>
               <p>
                 <a
                   href="https://www.youtube.com/watch?v=gebaKdfty88&ab_channel=mon"
@@ -407,10 +458,11 @@
                 ><img src="images/heapsort.png" alt=""
               /></a>
               <p>
-                <a href="https://github.com/miles-nichols/SE-3210"
-                target="_blank"
-                >GitHub Repository</a
-              ><br /><br />
+                <a
+                  href="https://github.com/miles-nichols/SE-3210"
+                  target="_blank"
+                  >GitHub Repository</a
+                ><br /><br />
                 As part of a team project for a systems programming course, I
                 implemented the <em>heapsort</em> algorithm entirely in LEGv8
                 assembly language, working closely with a partner to tackle
@@ -468,7 +520,11 @@
               <header>
                 <h2>My Resume</h2>
               </header>
-              <a href="assets/files/resume.pdf" target="_blank" class="image fit">
+              <a
+                href="assets/files/resume.pdf"
+                target="_blank"
+                class="image fit"
+              >
                 <img
                   src="images/updated and w highschool.jpg"
                   alt="Miles Nichols Resume Preview"
@@ -477,7 +533,10 @@
               </a>
               <ul class="actions special">
                 <li>
-                  <a href="assets/files/resume.pdf" class="button" target="_blank"
+                  <a
+                    href="assets/files/resume.pdf"
+                    class="button"
+                    target="_blank"
                     >View Full Resume</a
                   >
                 </li>
@@ -493,7 +552,8 @@
                 ><img src="images/crepe.png" alt="C'est La Crêpe"
               /></a>
               <p>
-                <strong>C'est La Crêpe – Food Trailer Team Lead</strong><br /><br />
+                <strong>C'est La Crêpe – Food Trailer Team Lead</strong
+                ><br /><br />
                 As a co-leader during the launch of
                 <a
                   href="https://www.instagram.com/cest.la.crepe.food.trailer/"
@@ -611,140 +671,168 @@
 
     <!-- Enhanced UI Scripts -->
     <script>
-      document.addEventListener('DOMContentLoaded', function() {
-          // Enhanced Binary Rain Background
-          const canvas = document.getElementById('binary-canvas');
-          const ctx = canvas.getContext('2d');
-          
-          // Set canvas to full window size
-          function resizeCanvas() {
-              canvas.width = window.innerWidth;
-              canvas.height = window.innerHeight;
-              initRain();
+      document.addEventListener("DOMContentLoaded", function () {
+        // Enhanced Binary Rain Background
+        const canvas = document.getElementById("binary-canvas");
+        const ctx = canvas.getContext("2d");
+
+        // Set canvas to full window size
+        function resizeCanvas() {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+          initRain();
+        }
+
+        // Initialize rain parameters
+        let fontSize, columns, drops, charSet;
+
+        function initRain() {
+          // Adjust font size based on screen width
+          fontSize = Math.max(10, Math.min(16, window.innerWidth / 80));
+          columns = Math.floor(canvas.width / fontSize);
+
+          // Use a mix of binary and other tech-looking characters
+          charSet = [
+            "0",
+            "1",
+            "░",
+            "▒",
+            "▓",
+            "█",
+            "⎺",
+            "⎻",
+            "⎼",
+            "⎽",
+            "▖",
+            "▗",
+            "▘",
+            "▙",
+            "▚",
+            "▛",
+            "▜",
+            "▝",
+            "▞",
+            "▟",
+          ];
+
+          // Initialize drops
+          drops = [];
+          for (let i = 0; i < columns; i++) {
+            drops[i] = {
+              y: Math.random() * -canvas.height,
+              speed: 2 + Math.random() * 5,
+              length: 5 + Math.floor(Math.random() * 15),
+              opacity: 0.1 + Math.random() * 0.6,
+            };
           }
-          
-          // Initialize rain parameters
-          let fontSize, columns, drops, charSet;
-          
-          function initRain() {
-              // Adjust font size based on screen width
-              fontSize = Math.max(10, Math.min(16, window.innerWidth / 80));
-              columns = Math.floor(canvas.width / fontSize);
-              
-              // Use a mix of binary and other tech-looking characters
-              charSet = ['0', '1', '░', '▒', '▓', '█', '⎺', '⎻', '⎼', '⎽', '▖', '▗', '▘', '▙', '▚', '▛', '▜', '▝', '▞', '▟'];
-              
-              // Initialize drops
-              drops = [];
-              for (let i = 0; i < columns; i++) {
-                  drops[i] = {
-                      y: Math.random() * -canvas.height,
-                      speed: 2 + Math.random() * 5,
-                      length: 5 + Math.floor(Math.random() * 15),
-                      opacity: 0.1 + Math.random() * 0.6
-                  };
+        }
+
+        // Draw the rain
+        function drawRain() {
+          // Semi-transparent overlay to create trails
+          ctx.fillStyle = "rgba(51, 41, 47, 0.08)";
+          ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+          ctx.fillStyle = "#A67B5B"; // Primary brown color
+          ctx.font = `bold ${fontSize}px monospace`;
+
+          for (let i = 0; i < drops.length; i++) {
+            const x = i * fontSize;
+            const drop = drops[i];
+
+            // Draw each character in the drop
+            for (let j = 0; j < drop.length; j++) {
+              const yPos = drop.y - j * fontSize;
+              if (yPos > 0 && yPos < canvas.height) {
+                // Fade out as we go up the drop
+                const charOpacity = 1 - j / drop.length;
+                ctx.globalAlpha = charOpacity * drop.opacity;
+
+                // Get random character
+                const text =
+                  charSet[Math.floor(Math.random() * charSet.length)];
+                ctx.fillText(text, x, yPos);
               }
+            }
+
+            // Move drop down
+            drop.y += drop.speed;
+
+            // Reset drop when it goes off screen
+            if (drop.y - drop.length * fontSize > canvas.height) {
+              drop.y = Math.random() * -50;
+              drop.speed = 2 + Math.random() * 5;
+              drop.length = 5 + Math.floor(Math.random() * 15);
+              drop.opacity = 0.1 + Math.random() * 0.6;
+            }
           }
-          
-          // Draw the rain
-          function drawRain() {
-              // Semi-transparent overlay to create trails
-              ctx.fillStyle = 'rgba(51, 41, 47, 0.08)';
-              ctx.fillRect(0, 0, canvas.width, canvas.height);
-              
-              ctx.fillStyle = '#A67B5B'; // Primary brown color
-              ctx.font = `bold ${fontSize}px monospace`;
-              
-              for (let i = 0; i < drops.length; i++) {
-                  const x = i * fontSize;
-                  const drop = drops[i];
-                  
-                  // Draw each character in the drop
-                  for (let j = 0; j < drop.length; j++) {
-                      const yPos = drop.y - (j * fontSize);
-                      if (yPos > 0 && yPos < canvas.height) {
-                          // Fade out as we go up the drop
-                          const charOpacity = 1 - (j / drop.length);
-                          ctx.globalAlpha = charOpacity * drop.opacity;
-                          
-                          // Get random character
-                          const text = charSet[Math.floor(Math.random() * charSet.length)];
-                          ctx.fillText(text, x, yPos);
-                      }
-                  }
-                  
-                  // Move drop down
-                  drop.y += drop.speed;
-                  
-                  // Reset drop when it goes off screen
-                  if (drop.y - (drop.length * fontSize) > canvas.height) {
-                      drop.y = Math.random() * -50;
-                      drop.speed = 2 + Math.random() * 5;
-                      drop.length = 5 + Math.floor(Math.random() * 15);
-                      drop.opacity = 0.1 + Math.random() * 0.6;
-                  }
-              }
-              
-              // Reset global alpha
-              ctx.globalAlpha = 1.0;
-          }
-          
-          // Handle window resize
-          window.addEventListener('resize', resizeCanvas);
-          
-          // Start the animation
-          resizeCanvas();
-          setInterval(drawRain, 50);
-          
-          // GSAP ScrollTrigger Animations
-          gsap.registerPlugin(ScrollTrigger);
-          const posts = document.querySelectorAll('.post, .about-item, article');
-          posts.forEach(post => {
-              gsap.fromTo(post, {
-                  opacity: 0,
-                  y: 20
-              }, {
-                  opacity: 1,
-                  y: 0,
-                  duration: 0.6,
-                  scrollTrigger: {
-                      trigger: post,
-                      start: 'top 80%',
-                      end: 'bottom 20%',
-                      markers: false,
-                      once: true
-                  }
-              });
+
+          // Reset global alpha
+          ctx.globalAlpha = 1.0;
+        }
+
+        // Handle window resize
+        window.addEventListener("resize", resizeCanvas);
+
+        // Start the animation
+        resizeCanvas();
+        setInterval(drawRain, 50);
+
+        // GSAP ScrollTrigger Animations
+        gsap.registerPlugin(ScrollTrigger);
+        const posts = document.querySelectorAll(".post, .about-item, article");
+        posts.forEach((post) => {
+          gsap.fromTo(
+            post,
+            {
+              opacity: 0,
+              y: 20,
+            },
+            {
+              opacity: 1,
+              y: 0,
+              duration: 0.6,
+              scrollTrigger: {
+                trigger: post,
+                start: "top 80%",
+                end: "bottom 20%",
+                markers: false,
+                once: true,
+              },
+            }
+          );
+        });
+
+        // Page Navigation
+        document.querySelectorAll(".page-link").forEach((link) => {
+          link.addEventListener("click", function (e) {
+            e.preventDefault();
+            const page = this.getAttribute("data-page");
+
+            // Remove active class from all sections and add to the clicked one
+            document.querySelectorAll(".page-section").forEach((sec) => {
+              sec.classList.remove("active");
+            });
+            document.getElementById(page).classList.add("active");
+
+            // Update navigation links
+            document
+              .querySelectorAll("#nav .links li")
+              .forEach((li) => li.classList.remove("active"));
+            this.parentElement.classList.add("active");
+
+            // Scroll to top after navigation
+            window.scrollTo({
+              top: 0,
+              behavior: "smooth",
+            });
           });
-
-          // Page Navigation
-          document.querySelectorAll('.page-link').forEach(link => {
-              link.addEventListener('click', function(e) {
-                  e.preventDefault();
-                  const page = this.getAttribute('data-page');
-
-                  // Remove active class from all sections and add to the clicked one
-                  document.querySelectorAll('.page-section').forEach(sec => {
-                      sec.classList.remove('active');
-                  });
-                  document.getElementById(page).classList.add('active');
-
-                  // Update navigation links
-                  document.querySelectorAll('#nav .links li').forEach(li => li.classList.remove('active'));
-                  this.parentElement.classList.add('active');
-
-                  // Scroll to top after navigation
-                  window.scrollTo({
-                      top: 0,
-                      behavior: 'smooth'
-                  });
-              });
-          });
+        });
       });
 
-      window.onload = function() {
-          document.querySelector('#wrapper').classList.remove('loading');
-      }
+      window.onload = function () {
+        document.querySelector("#wrapper").classList.remove("loading");
+      };
     </script>
   </body>
 </html>

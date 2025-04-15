@@ -4,125 +4,271 @@
     <title>Miles Nichols' Portfolio</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <!-- Google Fonts for modern, readable typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="assets/css/main.css" />
     <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
     <link rel="icon" href="images/M.jpg" type="image/jpg" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
-      /* Original styles */
-      .page-section {
-        display: none;
+      :root {
+        --primary: #51CBEE;
+        --secondary: #6e48aa;
+        --accent: #9d50bb;
+        --background: #0A192A;
+        --card-bg: rgba(255,255,255,0.08);
+        --text-main: #FFFFFF;
+        --text-secondary: #B0BEC5;
+        --border-radius: 14px;
+        --shadow: 0 0 20px rgba(81, 203, 238, 0.3);
       }
-      .page-section.active {
-        display: block;
-        animation: fadeIn 0.5s ease;
+      html, body {
+        background: var(--background);
+        color: var(--text-secondary);
+        font-family: 'Inter', Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        min-height: 100vh;
       }
-      @keyframes fadeIn {
-        from { opacity: 0; }
-        to { opacity: 1; }
+      h1, h2, h3 {
+        font-family: 'Montserrat', Arial, sans-serif;
+        color: var(--text-main);
+        font-weight: 700;
+        margin-bottom: 0.5em;
+        text-align: center;
       }
-      #intro { margin-bottom: 2rem; }
-      #home.active #intro { display: block; }
-      #projects.active #intro,
-      #about.active #intro { display: none; }
-      .resume-image {
-        width: 100%;
-        border: 1px solid #ddd;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        transition: transform 0.3s ease;
+      h2 {
+        font-size: 2rem;
       }
-      .resume-image:hover {
-        transform: scale(1.02);
+      .major h2, .posts h2 {
+        background: linear-gradient(90deg, var(--primary), var(--accent));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
+        text-fill-color: transparent;
+        margin-bottom: 0.5em;
       }
-      .about-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 2rem;
-        width: 100%;
+      p {
+        line-height: 1.7;
+        color: var(--text-secondary);
       }
-      .about-item {
-        margin-bottom: 2rem;
+      a {
+        color: var(--primary);
+        text-decoration: none;
+        transition: color 0.2s;
       }
-      @media (max-width: 736px) {
-        .about-grid {
-          grid-template-columns: 1fr;
-        }
+      a:hover, a:focus {
+        color: var(--accent);
+        text-decoration: underline;
       }
-
-      /* New UI Enhancements */
-      /* 1. Holographic Card Effect */
-      .post, .about-item, article {
-        background: rgba(255,255,255,0.1);
-        backdrop-filter: blur(10px);
-        border: 1px solid rgba(255,255,255,0.2);
-        box-shadow: 0 0 20px rgba(81, 203, 238, 0.3);
-        transition: all 0.3s;
-        border-radius: 10px;
-        overflow: hidden;
+      /* Navigation */
+      #nav {
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0,5 L100,5" stroke="%2351CBEE" stroke-width="0.5" stroke-dasharray="5,2"/></svg>') center center no-repeat;
+        background-size: 80% 100%;
+        padding: 0.5em 0;
+        box-shadow: 0 2px 8px rgba(10,25,30,0.2);
+        position: sticky;
+        top: 0;
+        z-index: 100;
       }
-      .post:hover, .about-item:hover, article:hover {
-        transform: translateY(-5px) rotateX(10deg);
-        box-shadow: 0 15px 30px rgba(81, 203, 238, 0.5);
+      #nav .links {
+        display: flex;
+        gap: 2em;
+        background: rgba(10,25,30,0.8);
+        padding: 0.5em 2em;
+        border-radius: var(--border-radius);
+        align-items: center;
+        justify-content: center;
       }
-
-      /* 2. Binary Rain Background */
+      #nav .links li {
+        list-style: none;
+      }
+      #nav .links li a {
+        color: var(--text-secondary);
+        font-weight: 700;
+        padding: 0.5em 1em;
+        border-radius: 8px;
+        transition: background 0.2s, color 0.2s;
+      }
+      #nav .links li.active a,
+      #nav .links li a:focus {
+        color: var(--primary) !important;
+        background: rgba(81,203,238,0.12);
+        border-bottom: 2px solid var(--primary);
+      }
+      #nav .links li a:hover {
+        color: var(--accent) !important;
+        background: rgba(157,80,187,0.10);
+      }
+      #nav .icons {
+        display: flex;
+        gap: 1em;
+        margin-top: 0.5em;
+        justify-content: center;
+      }
+      #nav .icons a {
+        color: var(--primary);
+        font-size: 1.3em;
+        transition: color 0.2s;
+      }
+      #nav .icons a:hover {
+        color: var(--accent);
+      }
+      /* Binary Rain Background */
       #binary-canvas {
         position: fixed;
         top: 0;
         left: 0;
-        width: 100%;
-        height: 100%;
+        width: 100vw;
+        height: 100vh;
         z-index: -1;
         opacity: 0.5;
+        pointer-events: none;
       }
-
-      /* 3. Circuit Board Navigation */
-      #nav {
-        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0,5 L100,5" stroke="%2351CBEE" stroke-width="0.5" stroke-dasharray="5,2"/></svg>') center center no-repeat;
-        background-size: 80% 100%;
+      /* Section Layout */
+      #wrapper {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 2em 1em 4em 1em;
+        transition: opacity 0.5s ease;
       }
-      #nav .links {
-        background: rgba(10,25,30,0.8);
-        padding: 0 20px;
+      #wrapper.loading {
+        opacity: 0.5;
       }
-      #nav a:hover {
-        color: #51CBEE !important;
+      .page-section {
+        display: none;
+        opacity: 0;
+        transition: opacity 0.5s ease;
       }
-
-      /* 4. Kinetic Typography Headers */
-      .major h2, .posts h2 {
+      .page-section.active {
+        display: block;
+        opacity: 1;
+      }
+      #intro {
+        margin-bottom: 2.5em;
+        text-align: center;
+      }
+      #intro h1 {
+        font-size: 2.5em;
+        margin-bottom: 0.2em;
+      }
+      #intro p {
+        font-size: 1.2em;
+        color: var(--text-secondary);
+      }
+      /* Card Styles */
+      .post, .about-item, article {
+        background: var(--card-bg);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.15);
+        box-shadow: var(--shadow);
+        border-radius: var(--border-radius);
         overflow: hidden;
+        margin-bottom: 2em;
+        padding: 2em;
+        transition: box-shadow 0.3s, transform 0.3s;
       }
-      .major h2 span, .posts h2 span {
-        display: inline-block;
+      .post:hover, .about-item:hover, article:hover {
+        transform: translateY(-5px) scale(1.01);
+        box-shadow: 0 15px 30px rgba(81, 203, 238, 0.5);
       }
-
-      /* 5. Microinteraction Buttons */
+      .image.main, .image.fit {
+        display: block;
+        width: 100%;
+        border-radius: 10px;
+        margin: 1em 0;
+        box-shadow: 0 4px 16px rgba(81,203,238,0.10);
+        transition: transform 0.4s ease-in-out;
+      }
+      .image.main:hover, .image.fit:hover {
+        transform: scale(1.03);
+      }
+      /* Button Styles */
       .button, .actions.special .button {
-        background: linear-gradient(90deg, #6e48aa 0%, #9d50bb 100%);
+        background: linear-gradient(90deg, var(--secondary) 0%, var(--accent) 100%);
         background-size: 150% auto;
         background-position: left center;
-        color: #ffffff;
+        color: #fff;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
-        transition: all 0.4s;
         border: none;
+        border-radius: 8px;
+        padding: 0.8em 2em;
+        font-size: 1em;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background-position 0.4s, transform 0.2s;
+        margin: 0.5em 0.5em 0.5em 0;
+        display: inline-block;
       }
       .button:hover {
         background-position: 100% 0;
-        transform: translateY(-2px) scale(1.02);
+        transform: translateY(-2px) scale(1.03);
       }
       .button:active {
         transform: translateY(1px) scale(0.98);
       }
-
-      /* 6. Scroll-Triggered Animations */
+      /* About Grid */
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2em;
+        width: 100%;
+      }
+      .about-item {
+        margin-bottom: 0;
+      }
+      @media (max-width: 900px) {
+        #wrapper {
+          padding: 1em 0.5em 2em 0.5em;
+        }
+        .about-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+      @media (max-width: 600px) {
+        h1 { font-size: 2em; }
+        h2 { font-size: 1.3em; }
+        .post, .about-item, article {
+          padding: 1em;
+        }
+        #nav .links {
+          flex-direction: column;
+          gap: 0.5em;
+          padding: 0.5em 1em;
+        }
+        #nav .links li a {
+          font-size: 0.9em;
+          padding: 0.5em 0.75em;
+        }
+      }
+      /* Accessibility & Details */
+      img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 10px;
+      }
+      .resume-image {
+        width: 100%;
+        border: 1px solid #ddd;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s;
+      }
+      .resume-image:hover {
+        transform: scale(1.02);
+      }
+      /* Animations */
       .post, .about-item, article {
         opacity: 0;
         transform: translateY(20px);
         will-change: transform, opacity;
       }
-
+      .post.visible, .about-item.visible, article.visible {
+        opacity: 1;
+        transform: none;
+        transition: opacity 0.6s, transform 0.6s;
+      }
       @media (prefers-reduced-motion) {
         .post, .about-item, article,
         .button:hover, .resume-image:hover {
@@ -136,11 +282,10 @@
   <body class="is-preload">
     <!-- Binary Rain Canvas -->
     <canvas id="binary-canvas"></canvas>
-
     <div id="wrapper" class="fade-in">
       <!-- Intro -->
       <div id="intro">
-        <h1><br />Miles Nichols</h1>
+        <h1>Miles Nichols</h1>
         <p>
           Software Engineering student passionate about problem-solving,
           Artificial Intelligence, and innovative tech solutions.
@@ -148,12 +293,10 @@
         <ul class="actions">
           <li>
             <a href="assets/files/resume.pdf" class="button" target="_blank"
-              >View Résumé</a
-            >
+              >View Résumé</a>
           </li>
         </ul>
       </div>
-
       <!-- Nav -->
       <nav id="nav">
         <ul class="links">
@@ -162,8 +305,7 @@
           </li>
           <li>
             <a href="#projects" class="page-link" data-page="projects"
-              >Projects</a
-            >
+              >Projects</a>
           </li>
           <li>
             <a href="#about" class="page-link" data-page="about">About</a>
@@ -174,22 +316,17 @@
             <a
               href="https://www.linkedin.com/in/miles-nichols"
               class="icon brands fa-linkedin"
-              ><span class="label">LinkedIn</span></a
-            >
+              ><span class="label">LinkedIn</span></a>
           </li>
           <li>
             <a
               href="https://github.com/miles-nichols"
               class="icon brands fa-github"
-              ><span class="label">GitHub</span></a
-            >
+              ><span class="label">GitHub</span></a>
           </li>
         </ul>
       </nav>
-
-      <!-- ==================== -->
       <!-- HOME PAGE CONTENT -->
-      <!-- ==================== -->
       <div id="home" class="page-section active">
         <div id="main">
           <article class="post featured">
@@ -203,32 +340,27 @@
                 professionally.
               </p>
             </header>
-            <a href="#" class="image main"><img src="images/image-5.jpg" alt="" /></a>
+            <a href="#" class="image main"><img src="images/image-5.jpg" alt="Miles Nichols at work" /></a>
             <ul class="actions special">
               <li>
                 <a
                   href="#projects"
                   class="button large page-link"
                   data-page="projects"
-                  >View My Projects</a
-                >
+                  >View My Projects</a>
               </li>
               <li>
                 <a
                   href="#about"
                   class="button large page-link"
                   data-page="about"
-                  >Learn About Me</a
-                >
+                  >Learn About Me</a>
               </li>
             </ul>
           </article>
         </div>
       </div>
-
-      <!-- ==================== -->
       <!-- PROJECTS PAGE CONTENT -->
-      <!-- ==================== -->
       <div id="projects" class="page-section">
         <div id="main">
           <article class="post featured">
@@ -237,7 +369,6 @@
               <p>A collection of my technical work and accomplishments</p>
             </header>
           </article>
-
           <section class="posts">
             <!-- Grateful Gig Project -->
             <article>
@@ -248,7 +379,7 @@
               <a
                 href="https://github.com/miles-nichols/Greateful-Gig-Android-App"
                 class="image fit"
-                ><img src="images/greatfulgig.png" alt=""
+                ><img src="images/greatfulgig.png" alt="Grateful Gig App Screenshot"
               /></a>
               <p>
                 <a
@@ -270,36 +401,29 @@
                 strategies, delivering a smooth user experience.
               </p>
             </article>
-
             <!-- Autonomous Robot Project -->
             <article>
               <header>
                 <span class="date">November 2024 - December 2024</span>
-				<h2><a href="#"></a>Autonomous Navigation      Robot</a></h2>
-			</header>
+                <h2><a href="#">Autonomous Navigation Robot</a></h2>
+              </header>
               <a
                 href="https://github.com/miles-nichols/Robot-Navigation"
                 class="image fit"
-                ><img src="images/cpre288.png" alt=""
+                ><img src="images/cpre288.png" alt="Autonomous Robot"
               /></a>
               <p>
-                <!-- <a
+                <a
                   href="https://github.com/miles-nichols/Robot-Navigation"
                   target="_blank"
                   >GitHub Repository</a
-                ><br /><br /> -->
-                <p>
-                  <a
-                    href="https://github.com/miles-nichols/Robot-Navigation"
-                    target="_blank"
-                    >GitHub Repository</a
-                  >
-                  |
-                  <a
-                    href="assets/files/proposal.docx"
-                    target="_blank"
-                    >Project Proposal</a
-                  ><br /><br />
+                >
+                |
+                <a
+                  href="assets/files/proposal.docx"
+                  target="_blank"
+                  >Project Proposal</a
+                ><br /><br />
                 Led the design and development of a microcontroller-based robot
                 capable of autonomously navigating a predefined, unknown course.
                 Managed a team of six by streamlining collaboration through clear
@@ -314,14 +438,13 @@
                 and motor coordination for reliable autonomous navigation.
               </p>
             </article>
-
             <!-- Fitness Tracker Project -->
             <article>
               <header>
                 <span class="date">August 2024 - December 2024</span>
                 <h2><a href="#">Fitness Tracker</a></h2>
               </header>
-              <a href="#" class="image fit"><img src="images/fitness.png" alt="" /></a>
+              <a href="#" class="image fit"><img src="images/fitness.png" alt="Fitness Tracker App" /></a>
               <p>
                 <a
                   href="https://www.youtube.com/watch?v=gebaKdfty88&ab_channel=mon"
@@ -340,7 +463,6 @@
                 developer on a team of four, I collaborated closely with another
                 front-end engineer and two back-end developers to bring this
                 project to life.<br /><br />
-
                 I led the development of the user interface using Java and XML
                 in Android Studio, prioritizing a clean layout, smooth
                 navigation, and mobile responsiveness. I structured the
@@ -349,26 +471,22 @@
                 responsibilities also included connecting the UI with real-time
                 data services and ensuring smooth integration with the backend
                 through well-defined APIs.<br /><br />
-
                 To support real-time features, I implemented WebSocket
                 connections that allowed dynamic syncing of user data (such as
                 workout logs and performance stats) across sessions. I also
                 integrated HTTP-based CRUD operations to fetch, update, and
                 delete user records, enabling seamless communication between the
                 client and server.<br /><br />
-
                 I contributed to the DevOps pipeline by configuring CI/CD
                 workflows to automate builds, testing, and deployment. This
                 significantly enhanced our team's development velocity and
                 helped catch integration issues early.<br /><br />
-
                 Through this project, I gained hands-on experience in
                 collaborative software development, real-time systems
                 integration, and building production-ready mobile interfaces
                 with performance and user experience in mind.
               </p>
             </article>
-
             <!-- Heapsort Project -->
             <article>
               <header>
@@ -378,7 +496,7 @@
               <a
                 href="https://github.com/miles-nichols/SE-3210"
                 class="image fit"
-                ><img src="images/heapsort.png" alt=""
+                ><img src="images/heapsort.png" alt="LEGv8 Assembly Heapsort"
               /></a>
               <p>
                 <a href="https://github.com/miles-nichols/SE-3210"
@@ -392,315 +510,135 @@
                 designed to reinforce our understanding of ARMv8 architecture
                 and calling conventions while developing a modular, efficient
                 sorting algorithm without relying on nested loops.<br /><br />
-
                 I contributed to designing and coding multiple modular
                 procedures, each adhering strictly to the ARMv8 calling
                 conventions. These included custom memory access, stack frame
                 setup, and careful register allocation to preserve program
                 state. We wrote unit tests and used the provided in-house
-                <code>legv8emul</code> emulator on a Linux-based remote server
-                (Pyrite) to verify functionality and correctness. Debugging
-                involved using emulator-specific pseudo-instructions like
-                <code>PRNT</code>, <code>DUMP</code>, and <code>HALT</code>, as
-                traditional debugging tools were unavailable.<br /><br />
-
-                The emulator environment simulated memory and stack separately,
-                emphasizing safe memory management and realistic hardware
-                constraints. We managed main memory directly using byte-level
-                addressing, handled 8-byte integers with precision, and
-                carefully tested each function in isolation before integration
-                to avoid cascading bugs.<br /><br />
-
-                This project not only sharpened my skills in assembly language
-                and low-level systems thinking but also improved my ability to
-                work in a collaborative environment under strict submission and
-                formatting guidelines. The experience deepened my understanding
-                of computer architecture and reinforced best practices for
-                memory-safe, procedure-driven programming in a constrained
-                environment.
+                <code>legv8emu</code> tool for debugging and validation.
               </p>
             </article>
           </section>
         </div>
       </div>
-
-      <!-- ==================== -->
       <!-- ABOUT PAGE CONTENT -->
-      <!-- ==================== -->
       <div id="about" class="page-section">
         <div id="main">
           <article class="post featured">
             <header class="major">
               <h2>About Me</h2>
-              <p>My education, work experience, and resume</p>
+              <p>Get to know my background, skills, and interests</p>
             </header>
-          </article>
-
-          <div class="about-grid">
-            <!-- Top Left: Resume -->
-            <article class="about-item">
-              <header>
-                <h2>My Resume</h2>
-              </header>
-              <a href="assets/files/resume.pdf" target="_blank" class="image fit">
-                <img
-                  src="images/updated and w highschool.jpg"
-                  alt="Miles Nichols Resume Preview"
-                  class="resume-image"
-                />
-              </a>
-              <ul class="actions special">
-                <li>
-                  <a href="assets/files/resume.pdf" class="button" target="_blank"
-                    >View Full Resume</a
-                  >
-                </li>
-              </ul>
-            </article>
-
-            <!-- Top Right: Work Experience -->
-            <article class="about-item">
-              <header>
-                <h2>Work Experience</h2>
-              </header>
-              <a href="#" class="image fit"
-                ><img src="images/crepe.png" alt="C'est La Crêpe"
-              /></a>
-              <p>
-                <strong>C'est La Crêpe – Food Trailer Team Lead</strong><br /><br />
-                As a co-leader during the launch of
-                <a
-                  href="https://www.instagram.com/cest.la.crepe.food.trailer/"
-                  target="_blank"
-                  >C'est La Crêpe</a
-                >, a French-inspired food trailer based in Treynor, Iowa, I
-                played a pivotal role in establishing efficient operational
-                workflows and delivering exceptional customer experiences. I
-                supervised a team of employees, ensuring high-quality food
-                preparation and attentive service, which contributed to the
-                smooth day-to-day operations of the business. This role enhanced
-                my leadership skills, adaptability, and commitment to excellence
-                in a fast-paced, customer-centric environment.
-              </p>
-            </article>
-
-            <!-- Bottom Left: Education -->
-            <article class="about-item">
-              <header>
-                <h2>Education</h2>
-              </header>
-              <a href="#" class="image fit"
-                ><img src="images/pic06.jpg" alt="Iowa State University"
-              /></a>
-              <p>
-                <strong>Iowa State University</strong><br /><br />
-                <strong>Bachelor's in Software Engineering</strong><br />
-                Graduation: Fall 2026<br /><br />
-                <strong>Master's in Artificial Intelligence</strong><br />
-                Graduation: Fall 2027
-              </p>
-            </article>
-
-            <!-- Bottom Right: Contact -->
-            <article class="about-item">
-              <header>
-                <h2>Contact</h2>
-              </header>
-              <div class="box">
-                <h3>Let's Connect</h3>
-                <ul class="alt">
-                  <li><strong>Email:</strong> miles@voilatech.com</li>
-                  <li><strong>Phone:</strong> (712) 355-8178</li>
-                  <li>
-                    <strong>LinkedIn:</strong>
-                    <a
-                      href="https://www.linkedin.com/in/miles-nichols"
-                      target="_blank"
-                      >linkedin.com/in/miles-nichols</a
-                    >
-                  </li>
-                  <li>
-                    <strong>GitHub:</strong>
-                    <a href="https://github.com/miles-nichols" target="_blank"
-                      >github.com/miles-nichols</a
-                    >
-                  </li>
-                  <li>
-                    <strong>Website:</strong>
-                    <a
-                      href="https://miles-nichols.github.io/my-website/"
-                      target="_blank"
-                      >miles-nichols.github.io</a
-                    >
-                  </li>
+            <div class="about-grid">
+              <div class="about-item">
+                <h3>Education</h3>
+                <p>
+                  <strong>Iowa State University</strong><br>
+                  B.S. in Software Engineering<br>
+                  Expected Graduation: May 2026
+                </p>
+              </div>
+              <div class="about-item">
+                <h3>Technical Skills</h3>
+                <ul>
+                  <li>Java, Python, C, JavaScript</li>
+                  <li>Android Studio, IntelliJ, VS Code</li>
+                  <li>MySQL, REST APIs, Git</li>
+                  <li>CI/CD, Agile, Unit Testing</li>
                 </ul>
               </div>
-            </article>
-          </div>
+              <div class="about-item">
+                <h3>Interests</h3>
+                <p>
+                  Artificial Intelligence, Robotics, Mobile App Development, Open Source, UI/UX Design
+                </p>
+              </div>
+              <div class="about-item">
+                <h3>Résumé</h3>
+                <a href="assets/files/resume.pdf" target="_blank">
+                  <img src="images/resume-preview.jpg" alt="Résumé Preview" class="resume-image" />
+                </a>
+              </div>
+            </div>
+          </article>
         </div>
       </div>
-
-      <!-- Footer -->
-      <footer id="footer">
-        <section class="split contact">
-          <section>
-            <h3>Phone</h3>
-            <p><a href="tel:7123558178">(712) 355-8178</a></p>
-          </section>
-          <section>
-            <h3>Email</h3>
-            <p><a href="mailto:miles@vollatech.com">miles@voilatech.com</a></p>
-          </section>
-          <section>
-            <h3>Social</h3>
-            <ul class="icons alt">
-              <li>
-                <a
-                  href="https://www.linkedin.com/in/miles-nichols"
-                  class="icon brands alt fa-linkedin"
-                  ><span class="label">LinkedIn</span></a
-                >
-              </li>
-              <li>
-                <a
-                  href="https://github.com/miles-nichols"
-                  class="icon brands alt fa-github"
-                  ><span class="label">GitHub</span></a
-                >
-              </li>
-            </ul>
-          </section>
-        </section>
-      </footer>
     </div>
-
-    <!-- Scripts -->
-    <script src="assets/js/jquery.min.js"></script>
-    <script src="assets/js/jquery.scrollex.min.js"></script>
-    <script src="assets/js/jquery.scrolly.min.js"></script>
-    <script src="assets/js/browser.min.js"></script>
-    <script src="assets/js/breakpoints.min.js"></script>
-    <script src="assets/js/util.js"></script>
-    <script src="assets/js/main.js"></script>
-
-    <!-- Enhanced UI Scripts -->
+    <footer id="footer" style="text-align: center; padding: 2em 0;">
+        <p>&copy; 2025 Miles Nichols. All rights reserved.</p>
+    </footer>
+    <!-- JavaScript for page navigation and scroll-triggered animations -->
     <script>
-      // Binary Rain Background
-      const canvas = document.getElementById('binary-canvas');
-      const ctx = canvas.getContext('2d');
-      
-      function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      }
-      
-      window.addEventListener('resize', resizeCanvas);
-      resizeCanvas();
-      
-      const binary = "01";
-      const fontSize = 15;
-      const columns = Math.floor(canvas.width / (fontSize * 0.6));
-      const drops = Array(columns).fill(1);
-      
-      function drawBinaryRain() {
-        ctx.fillStyle = 'rgba(0, 10, 20, 0.05)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
-        ctx.fillStyle = '#51CBEE';
-        ctx.font = `${fontSize}px monospace`;
-        
-        drops.forEach((y, i) => {
-          const text = binary.charAt(Math.floor(Math.random() * binary.length));
-          const x = i * fontSize * 0.6;
-          ctx.fillText(text, x, y * fontSize);
-          
-          if (y * fontSize > canvas.height && Math.random() > 0.975) {
-            drops[i] = 0;
-          }
-          drops[i]++;
-        });
-      }
-      
-      setInterval(drawBinaryRain, 50);
-
-      // Kinetic Typography - Split headers into spans
-      function setupKineticText() {
-        document.querySelectorAll('.major h2, .posts h2').forEach(header => {
-          header.innerHTML = header.textContent.split('').map(char => 
-            `<span style="opacity:0;transform:translateY(20px)">${char === ' ' ? '&nbsp;' : char}</span>`
-          ).join('');
-        });
-      }
-
-      // Initialize GSAP animations
-      document.addEventListener('DOMContentLoaded', () => {
-        gsap.registerPlugin(ScrollTrigger);
-        setupKineticText();
-        
-        // Animate kinetic headers
-        gsap.to(".major h2 span, .posts h2 span", {
-          y: 0,
-          opacity: 1,
-          stagger: 0.05,
-          duration: 0.5,
-          scrollTrigger: {
-            trigger: ".major h2, .posts h2",
-            start: "top 80%"
-          }
-        });
-        
-        // Animate cards on scroll
-        gsap.utils.toArray(".post, .about-item, article").forEach(item => {
-          gsap.to(item, {
-            opacity: 1,
-            y: 0,
-            duration: 0.8,
-            scrollTrigger: {
-              trigger: item,
-              start: "top 90%"
+        document.addEventListener('DOMContentLoaded', function() {
+            // Binary Rain Background
+            const canvas = document.getElementById('binary-canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+            const columns = Math.floor(canvas.width / 10);
+            const drops = [];
+            for (let i = 0; i < columns; i++) {
+                drops[i] = 1;
             }
-          });
+            function binaryRain() {
+                ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+                ctx.fillStyle = '#0F0';
+                ctx.font = '10px monospace';
+                for (let i = 0; i < columns; i++) {
+                    const text = Math.random() > 0.5 ? 1 : 0;
+                    ctx.fillText(text, i * 10, drops[i] * 10);
+                    drops[i]++;
+                    if (drops[i] * 10 > canvas.height && Math.random() > 0.975) {
+                        drops[i] = 0;
+                    }
+                }
+            }
+            setInterval(binaryRain, 33);
+            // GSAP ScrollTrigger Animations
+            gsap.registerPlugin(ScrollTrigger);
+            const posts = document.querySelectorAll('.post, .about-item, article');
+            posts.forEach(post => {
+                gsap.fromTo(post, {
+                    opacity: 0,
+                    y: 20
+                }, {
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.6,
+                    scrollTrigger: {
+                        trigger: post,
+                        start: 'top 80%',
+                        end: 'bottom 20%',
+                        markers: false,
+                        once: true
+                    }
+                });
+            });
+            // Page Navigation
+            document.querySelectorAll('.page-link').forEach(link => {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const page = this.getAttribute('data-page');
+                    // Remove active class from all sections and add to the clicked one
+                    document.querySelectorAll('.page-section').forEach(sec => {
+                        sec.classList.remove('active');
+                    });
+                    document.getElementById(page).classList.add('active');
+                    // Update navigation links
+                    document.querySelectorAll('#nav .links li').forEach(li => li.classList.remove('active'));
+                    this.parentElement.classList.add('active');
+                    // Scroll to top after navigation
+                    window.scrollTo({
+                        top: 0,
+                        behavior: 'smooth'
+                    });
+                });
+            });
         });
-      });
-
-      // Original page navigation script
-      $(document).ready(function() {
-        function loadPage() {
-          var hash = window.location.hash.substring(1);
-          var validPages = ['home', 'projects', 'about'];
-          
-          if (hash && validPages.includes(hash)) {
-            showPage(hash);
-          } else {
-            showPage('home');
-          }
+        window.onload = function() {
+            document.querySelector('#wrapper').classList.remove('loading');
         }
-        
-        function showPage(page) {
-          $('.page-section').removeClass('active');
-          $('#' + page).addClass('active');
-          $('.links li').removeClass('active');
-          $('.links li a[data-page="' + page + '"]').parent().addClass('active');
-          window.scrollTo(0, 0);
-          
-          if (history.pushState) {
-            history.pushState(null, null, '#' + page);
-          }
-        }
-        
-        $('.page-link').click(function(e) {
-          e.preventDefault();
-          var page = $(this).data('page');
-          showPage(page);
-        });
-        
-        window.addEventListener('popstate', function() {
-          loadPage();
-        });
-        
-        loadPage();
-      });
     </script>
-  </body>
+</body>
 </html>
-

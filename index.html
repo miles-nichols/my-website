@@ -50,9 +50,9 @@
         to { opacity: 1; }
       }
       #intro { margin-bottom: 2rem; }
-      #home.active #intro { display: block; }
+      #home.active #intro,
       #projects.active #intro,
-      #about.active #intro { display: none; }
+      #about.active #intro { display: block; }
       .resume-image {
         width: 100%;
         border: 1px solid #ddd;
@@ -101,7 +101,7 @@
         width: 100%;
         height: 100%;
         z-index: -1;
-        opacity: 0.5;
+        opacity: 0.7;
       }
 
       /* 3. Circuit Board Navigation */
@@ -163,12 +163,12 @@
         }
       }
     </style>
-
   </head>
   <body class="is-preload">
     <!-- Binary Rain Canvas -->
     <canvas id="binary-canvas"></canvas>
 
+    <!-- Rest of your HTML content remains exactly the same -->
     <div id="wrapper" class="fade-in">
       <!-- Intro -->
       <div id="intro">
@@ -307,31 +307,25 @@
             <article>
               <header>
                 <span class="date">November 2024 - December 2024</span>
-				<h2><a href="#"></a>Autonomous Navigation      Robot</a></h2>
-			</header>
+                <h2><a href="#">Autonomous Navigation Robot</a></h2>
+              </header>
               <a
                 href="https://github.com/miles-nichols/Robot-Navigation"
                 class="image fit"
                 ><img src="images/cpre288.png" alt=""
               /></a>
               <p>
-                <!-- <a
+                <a
                   href="https://github.com/miles-nichols/Robot-Navigation"
                   target="_blank"
                   >GitHub Repository</a
-                ><br /><br /> -->
-                <p>
-                  <a
-                    href="https://github.com/miles-nichols/Robot-Navigation"
-                    target="_blank"
-                    >GitHub Repository</a
-                  >
-                  |
-                  <a
-                    href="assets/files/proposal.docx"
-                    target="_blank"
-                    >Project Proposal</a
-                  ><br /><br />
+                >
+                |
+                <a
+                  href="assets/files/proposal.docx"
+                  target="_blank"
+                  >Project Proposal</a
+                ><br /><br />
                 Led the design and development of a microcontroller-based robot
                 capable of autonomously navigating a predefined, unknown course.
                 Managed a team of six by streamlining collaboration through clear
@@ -618,45 +612,90 @@
     <!-- Enhanced UI Scripts -->
     <script>
       document.addEventListener('DOMContentLoaded', function() {
-          // Binary Rain Background
+          // Enhanced Binary Rain Background
           const canvas = document.getElementById('binary-canvas');
           const ctx = canvas.getContext('2d');
-          canvas.width = window.innerWidth;
-          canvas.height = window.innerHeight;
-
-          // Adjusted parameters for smaller, denser rain
-          const fontSize = 12;             // Smaller font size
-          const columns = Math.floor(canvas.width / fontSize);
-          const drops = [];
-
-          // Color for the rain
-          const rainColor = 'rgba(166, 123, 91, 0.7)'; // Brown with transparency
-
-          for (let i = 0; i < columns; i++) {
-              drops[i] = 1;
+          
+          // Set canvas to full window size
+          function resizeCanvas() {
+              canvas.width = window.innerWidth;
+              canvas.height = window.innerHeight;
+              initRain();
           }
-
-          function binaryRain() {
-              ctx.fillStyle = 'rgba(51, 41, 47, 0.1)'; // Dark brown with transparency
-              ctx.fillRect(0, 0, canvas.width, canvas.height);
-              ctx.fillStyle = rainColor;
-              ctx.font = `${fontSize}px monospace`; // Use adjusted font size
-
+          
+          // Initialize rain parameters
+          let fontSize, columns, drops, charSet;
+          
+          function initRain() {
+              // Adjust font size based on screen width
+              fontSize = Math.max(10, Math.min(16, window.innerWidth / 80));
+              columns = Math.floor(canvas.width / fontSize);
+              
+              // Use a mix of binary and other tech-looking characters
+              charSet = ['0', '1', '░', '▒', '▓', '█', '⎺', '⎻', '⎼', '⎽', '▖', '▗', '▘', '▙', '▚', '▛', '▜', '▝', '▞', '▟'];
+              
+              // Initialize drops
+              drops = [];
               for (let i = 0; i < columns; i++) {
-                  const text = Math.random() > 0.5 ? 1 : 0;
-                  ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-                  drops[i]++;
-
-                  // Reset drop when it goes off screen or at random
-                  if (drops[i] * fontSize > canvas.height && Math.random() > 0.95) {
-                      drops[i] = 0;
-                  }
+                  drops[i] = {
+                      y: Math.random() * -canvas.height,
+                      speed: 2 + Math.random() * 5,
+                      length: 5 + Math.floor(Math.random() * 15),
+                      opacity: 0.1 + Math.random() * 0.6
+                  };
               }
           }
-
-          // Set the animation interval
-          setInterval(binaryRain, 30); // Adjust interval for speed
-
+          
+          // Draw the rain
+          function drawRain() {
+              // Semi-transparent overlay to create trails
+              ctx.fillStyle = 'rgba(51, 41, 47, 0.08)';
+              ctx.fillRect(0, 0, canvas.width, canvas.height);
+              
+              ctx.fillStyle = '#A67B5B'; // Primary brown color
+              ctx.font = `bold ${fontSize}px monospace`;
+              
+              for (let i = 0; i < drops.length; i++) {
+                  const x = i * fontSize;
+                  const drop = drops[i];
+                  
+                  // Draw each character in the drop
+                  for (let j = 0; j < drop.length; j++) {
+                      const yPos = drop.y - (j * fontSize);
+                      if (yPos > 0 && yPos < canvas.height) {
+                          // Fade out as we go up the drop
+                          const charOpacity = 1 - (j / drop.length);
+                          ctx.globalAlpha = charOpacity * drop.opacity;
+                          
+                          // Get random character
+                          const text = charSet[Math.floor(Math.random() * charSet.length)];
+                          ctx.fillText(text, x, yPos);
+                      }
+                  }
+                  
+                  // Move drop down
+                  drop.y += drop.speed;
+                  
+                  // Reset drop when it goes off screen
+                  if (drop.y - (drop.length * fontSize) > canvas.height) {
+                      drop.y = Math.random() * -50;
+                      drop.speed = 2 + Math.random() * 5;
+                      drop.length = 5 + Math.floor(Math.random() * 15);
+                      drop.opacity = 0.1 + Math.random() * 0.6;
+                  }
+              }
+              
+              // Reset global alpha
+              ctx.globalAlpha = 1.0;
+          }
+          
+          // Handle window resize
+          window.addEventListener('resize', resizeCanvas);
+          
+          // Start the animation
+          resizeCanvas();
+          setInterval(drawRain, 50);
+          
           // GSAP ScrollTrigger Animations
           gsap.registerPlugin(ScrollTrigger);
           const posts = document.querySelectorAll('.post, .about-item, article');
@@ -706,7 +745,6 @@
       window.onload = function() {
           document.querySelector('#wrapper').classList.remove('loading');
       }
-  </script>
+    </script>
   </body>
 </html>
-

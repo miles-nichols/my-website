@@ -10,299 +10,134 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <style>
-      /* Base Theme Variables */
-      :root {
-        --primary-color: #3498db;
-        --secondary-color: #2ecc71;
-        --dark-color: #2c3e50;
-        --light-color: #ecf0f1;
-        --accent-color: #e74c3c;
-        --text-color: #333;
-        --text-light: #7f8c8d;
-        --spacing-unit: 1.5rem;
-        --border-radius: 8px;
-        --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        --transition: all 0.3s ease;
+      /* Original styles */
+      .page-section {
+        display: none;
       }
-
-      /* Base Typography */
-      body {
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        line-height: 1.6;
-        color: var(--text-color);
-        background-color: #f9f9f9;
-      }
-
-      h1, h2, h3, h4 {
-        font-weight: 600;
-        margin-bottom: var(--spacing-unit);
-        line-height: 1.3;
-      }
-
-      p {
-        margin-bottom: var(--spacing-unit);
-      }
-
-      a {
-        color: var(--primary-color);
-        text-decoration: none;
-        transition: var(--transition);
-      }
-
-      a:hover {
-        color: var(--accent-color);
-      }
-
-      /* Layout Improvements */
-      #wrapper {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 var(--spacing-unit);
-      }
-
-      #intro {
-        text-align: center;
-        padding: calc(var(--spacing-unit) * 2) 0;
-        margin-bottom: calc(var(--spacing-unit) * 2);
-      }
-
-      /* Navigation */
-      #nav {
-        background-color: white;
-        box-shadow: var(--box-shadow);
-        border-radius: var(--border-radius);
-        margin-bottom: var(--spacing-unit);
-        padding: 0 var(--spacing-unit);
-      }
-
-      #nav .links {
-        display: flex;
-        justify-content: center;
-      }
-
-      #nav .links li {
-        margin: 0 calc(var(--spacing-unit) / 2);
-      }
-
-      #nav a {
-        padding: calc(var(--spacing-unit) / 2) var(--spacing-unit);
-        border-radius: var(--border-radius);
-      }
-
-      #nav a:hover {
-        background-color: rgba(52, 152, 219, 0.1);
-      }
-
-      #nav .active a {
-        background-color: var(--primary-color);
-        color: white;
-      }
-
-      /* Cards and Sections */
-      .post, .about-item, article {
-        background: white;
-        border-radius: var(--border-radius);
-        box-shadow: var(--box-shadow);
-        padding: var(--spacing-unit);
-        margin-bottom: var(--spacing-unit);
-        transition: var(--transition);
-        overflow: hidden;
-      }
-
-      .post:hover, .about-item:hover, article:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-      }
-
-      .image.fit {
-        border-radius: var(--border-radius);
-        overflow: hidden;
-        margin-bottom: var(--spacing-unit);
-      }
-
-      .image.fit img {
-        width: 100%;
-        height: auto;
+      .page-section.active {
         display: block;
-        transition: var(--transition);
+        animation: fadeIn 0.5s ease;
       }
-
-      .image.fit:hover img {
-        transform: scale(1.03);
-      }
-
-      /* Buttons */
-      .button {
-        display: inline-block;
-        background-color: var(--primary-color);
-        color: white;
-        padding: calc(var(--spacing-unit) / 2) var(--spacing-unit);
-        border-radius: var(--border-radius);
-        font-weight: 500;
-        transition: var(--transition);
-        border: none;
-        cursor: pointer;
-      }
-
-      .button:hover {
-        background-color: var(--secondary-color);
-        transform: translateY(-2px);
-      }
-
-      .button.large {
-        padding: var(--spacing-unit) calc(var(--spacing-unit) * 1.5);
-        font-size: 1.1rem;
-      }
-
-      /* Grid Layout */
-      .about-grid {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: var(--spacing-unit);
-        margin-bottom: var(--spacing-unit);
-      }
-
-      .posts {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-        gap: var(--spacing-unit);
-      }
-
-      /* Typography Enhancements */
-      .major h2 {
-        color: var(--dark-color);
-        font-size: 2rem;
-        position: relative;
-        padding-bottom: calc(var(--spacing-unit) / 2);
-      }
-
-      .major h2:after {
-        content: '';
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        width: 60px;
-        height: 3px;
-        background-color: var(--primary-color);
-      }
-
-      .date {
-        display: block;
-        color: var(--text-light);
-        font-size: 0.9rem;
-        margin-bottom: calc(var(--spacing-unit) / 2);
-      }
-
-      /* Resume Image */
-      .resume-image {
-        width: 100%;
-        border-radius: var(--border-radius);
-        box-shadow: var(--box-shadow);
-        transition: var(--transition);
-        margin-bottom: var(--spacing-unit);
-      }
-
-      .resume-image:hover {
-        transform: scale(1.02);
-      }
-
-      /* Contact Section */
-      .box {
-        background-color: white;
-        border-radius: var(--border-radius);
-        padding: var(--spacing-unit);
-        box-shadow: var(--box-shadow);
-      }
-
-      .box ul {
-        padding-left: 0;
-        list-style: none;
-      }
-
-      .box li {
-        margin-bottom: calc(var(--spacing-unit) / 2);
-        padding-bottom: calc(var(--spacing-unit) / 2);
-        border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-      }
-
-      .box li:last-child {
-        margin-bottom: 0;
-        padding-bottom: 0;
-        border-bottom: none;
-      }
-
-      /* Footer */
-      #footer {
-        background-color: var(--dark-color);
-        color: white;
-        padding: var(--spacing-unit) 0;
-        margin-top: calc(var(--spacing-unit) * 2);
-        border-radius: var(--border-radius);
-      }
-
-      #footer a {
-        color: var(--light-color);
-      }
-
-      #footer a:hover {
-        color: var(--primary-color);
-      }
-
-      .split-contact {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: var(--spacing-unit);
-      }
-
-      /* Animations */
       @keyframes fadeIn {
         from { opacity: 0; }
         to { opacity: 1; }
       }
-
-      .page-section {
-        display: none;
-        animation: fadeIn 0.5s ease;
+      #intro { margin-bottom: 2rem; }
+      #home.active #intro { display: block; }
+      #projects.active #intro,
+      #about.active #intro { display: none; }
+      .resume-image {
+        width: 100%;
+        border: 1px solid #ddd;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
       }
-
-      .page-section.active {
-        display: block;
+      .resume-image:hover {
+        transform: scale(1.02);
       }
-
-      /* Responsive Adjustments */
-      @media (max-width: 768px) {
-        #nav .links {
-          flex-direction: column;
-          align-items: center;
-        }
-
-        #nav .links li {
-          margin: calc(var(--spacing-unit) / 4) 0;
-        }
-
-        .posts, .about-grid {
+      .about-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        width: 100%;
+      }
+      .about-item {
+        margin-bottom: 2rem;
+      }
+      @media (max-width: 736px) {
+        .about-grid {
           grid-template-columns: 1fr;
         }
-
-        .major h2 {
-          font-size: 1.5rem;
-        }
       }
 
-      /* Remove binary rain for cleaner look */
+      /* New UI Enhancements */
+      /* 1. Holographic Card Effect */
+      .post, .about-item, article {
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(255,255,255,0.2);
+        box-shadow: 0 0 20px rgba(81, 203, 238, 0.3);
+        transition: all 0.3s;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .post:hover, .about-item:hover, article:hover {
+        transform: translateY(-5px) rotateX(10deg);
+        box-shadow: 0 15px 30px rgba(81, 203, 238, 0.5);
+      }
+
+      /* 2. Binary Rain Background */
       #binary-canvas {
-        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.5;
+      }
+
+      /* 3. Circuit Board Navigation */
+      #nav {
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0,5 L100,5" stroke="%2351CBEE" stroke-width="0.5" stroke-dasharray="5,2"/></svg>') center center no-repeat;
+        background-size: 80% 100%;
+      }
+      #nav .links {
+        background: rgba(10,25,30,0.8);
+        padding: 0 20px;
+      }
+      #nav a:hover {
+        color: #51CBEE !important;
+      }
+
+      /* 4. Kinetic Typography Headers */
+      .major h2, .posts h2 {
+        overflow: hidden;
+      }
+      .major h2 span, .posts h2 span {
+        display: inline-block;
+      }
+
+      /* 5. Microinteraction Buttons */
+      .button, .actions.special .button {
+        background: linear-gradient(90deg, #6e48aa 0%, #9d50bb 100%);
+        background-size: 200% auto;
+        transition: all 0.4s;
+        border: none;
+      }
+      .button:hover {
+        background-position: 100% 0;
+        transform: translateY(-2px) scale(1.02);
+      }
+      .button:active {
+        transform: translateY(1px) scale(0.98);
+      }
+
+      /* 6. Scroll-Triggered Animations */
+      .post, .about-item, article {
+        opacity: 0;
+        transform: translateY(20px);
+        will-change: transform, opacity;
+      }
+
+      @media (prefers-reduced-motion) {
+        .post, .about-item, article,
+        .button:hover, .resume-image:hover {
+          transform: none !important;
+          animation: none !important;
+          transition: none !important;
+        }
       }
     </style>
   </head>
   <body class="is-preload">
-    <!-- Binary Rain Canvas (hidden) -->
+    <!-- Binary Rain Canvas -->
     <canvas id="binary-canvas"></canvas>
 
     <div id="wrapper" class="fade-in">
       <!-- Intro -->
       <div id="intro">
-        <h1>Miles Nichols</h1>
+        <h1><br />Miles Nichols</h1>
         <p>
           Software Engineering student passionate about problem-solving,
           Artificial Intelligence, and innovative tech solutions.
@@ -357,7 +192,7 @@
           <article class="post featured">
             <header class="major">
               <span class="date">2025 Portfolio</span>
-              <h2>My Journey in Software Engineering</h2>
+              <h2><a href="#">My Journey in Software Engineering</a></h2>
               <p>
                 Dedicated Software Engineering student at Iowa State
                 University<br />
@@ -405,33 +240,27 @@
             <article>
               <header>
                 <span class="date">December 2024 - Present</span>
-                <h2>Grateful Gig</h2>
+                <h2><a href="#">Grateful Gig</a></h2>
               </header>
               <a
                 href="https://github.com/miles-nichols/Greateful-Gig-Android-App"
                 class="image fit"
-                ><img src="images/greatfulgig.png" alt="Grateful Gig Project"
+                ><img src="images/greatfulgig.png" alt=""
               /></a>
               <p>
                 <a
                   href="https://github.com/miles-nichols/Greateful-Gig-Android-App"
                   target="_blank"
                   >GitHub Repository</a
-                >
-              </p>
-              <p>
+                ><br /><br />
                 Designed and developed a social media platform centered around
                 daily gratitude sharing and community engagement. Created an
                 intuitive Android front-end using Java and XML in Android Studio,
                 focusing on user-friendly interactions and aesthetic design.
-              </p>
-              <p>
                 Engineered the back-end in Java using IntelliJ, integrating with a
                 MySQL database for secure and scalable data management. Built and
                 tested RESTful APIs, ensuring reliable client-server
                 communication, using Postman for thorough endpoint validation.
-              </p>
-              <p>
                 Employed Git for version control, maintaining clean commits and
                 collaborative development practices. Prioritized clean,
                 maintainable code through consistent testing and debugging
@@ -443,40 +272,39 @@
             <article>
               <header>
                 <span class="date">November 2024 - December 2024</span>
-                <h2>Autonomous Navigation Robot</h2>
-              </header>
+				<h2><a href="#"></a>Autonomous Navigation      Robot</a></h2>
+			</header>
               <a
                 href="https://github.com/miles-nichols/Robot-Navigation"
                 class="image fit"
-                ><img src="images/cpre288.png" alt="Autonomous Robot Project"
+                ><img src="images/cpre288.png" alt=""
               /></a>
               <p>
-                <a
+                <!-- <a
                   href="https://github.com/miles-nichols/Robot-Navigation"
                   target="_blank"
                   >GitHub Repository</a
-                >
-                |
-                <a
-                  href="assets/files/proposal.docx"
-                  target="_blank"
-                  >Project Proposal</a
-                >
-              </p>
-              <p>
+                ><br /><br /> -->
+                <p>
+                  <a
+                    href="https://github.com/miles-nichols/Robot-Navigation"
+                    target="_blank"
+                    >GitHub Repository</a
+                  >
+                  |
+                  <a
+                    href="assets/files/proposal.docx"
+                    target="_blank"
+                    >Project Proposal</a
+                  ><br /><br />
                 Led the design and development of a microcontroller-based robot
                 capable of autonomously navigating a predefined, unknown course.
                 Managed a team of six by streamlining collaboration through clear
                 task delegation, regular meetings, and consistent communication.
-              </p>
-              <p>
                 Designed and implemented control algorithms in C to process data
                 from integrated sensors—including ADCs, ultrasonic distance
                 sensors (ping), and servos to accurate movement and real-time
-                obstacle avoidance.
-              </p>
-              <p>
-                To support development and debugging, built a
+                obstacle avoidance. To support development and debugging, built a
                 custom Python-based GUI that visualized sensor data and provided
                 live system feedback. System performance was refined through
                 iterative testing and calibration, improving both sensor accuracy
@@ -488,9 +316,9 @@
             <article>
               <header>
                 <span class="date">August 2024 - December 2024</span>
-                <h2>Fitness Tracker</h2>
+                <h2><a href="#">Fitness Tracker</a></h2>
               </header>
-              <a href="#" class="image fit"><img src="images/fitness.png" alt="Fitness Tracker Project" /></a>
+              <a href="#" class="image fit"><img src="images/fitness.png" alt="" /></a>
               <p>
                 <a
                   href="https://www.youtube.com/watch?v=gebaKdfty88&ab_channel=mon"
@@ -502,36 +330,39 @@
                   href="https://github.com/miles-nichols/COMS-309-Sweat-Stats"
                   target="_blank"
                   >GitHub Repository</a
-                >
-              </p>
-              <p>
+                ><br /><br />
                 Sweat Stats is a mobile fitness tracking application built to
                 help users log workouts, track progress, and set fitness goals
                 through an intuitive and responsive interface. As a front-end
                 developer on a team of four, I collaborated closely with another
                 front-end engineer and two back-end developers to bring this
-                project to life.
-              </p>
-              <p>
+                project to life.<br /><br />
+
                 I led the development of the user interface using Java and XML
                 in Android Studio, prioritizing a clean layout, smooth
                 navigation, and mobile responsiveness. I structured the
                 front-end components with modularity and reusability in mind,
-                enabling faster iterations and easier maintenance.
-              </p>
-              <p>
+                enabling faster iterations and easier maintenance. My
+                responsibilities also included connecting the UI with real-time
+                data services and ensuring smooth integration with the backend
+                through well-defined APIs.<br /><br />
+
                 To support real-time features, I implemented WebSocket
                 connections that allowed dynamic syncing of user data (such as
                 workout logs and performance stats) across sessions. I also
                 integrated HTTP-based CRUD operations to fetch, update, and
                 delete user records, enabling seamless communication between the
-                client and server.
-              </p>
-              <p>
+                client and server.<br /><br />
+
                 I contributed to the DevOps pipeline by configuring CI/CD
                 workflows to automate builds, testing, and deployment. This
                 significantly enhanced our team's development velocity and
-                helped catch integration issues early.
+                helped catch integration issues early.<br /><br />
+
+                Through this project, I gained hands-on experience in
+                collaborative software development, real-time systems
+                integration, and building production-ready mobile interfaces
+                with performance and user experience in mind.
               </p>
             </article>
 
@@ -539,45 +370,51 @@
             <article>
               <header>
                 <span class="date">February 2025 - March 2025</span>
-                <h2>LEGv8 Assembly Heapsort</h2>
+                <h2><a href="#">LEGv8 Assembly Heapsort</a></h2>
               </header>
               <a
                 href="https://github.com/miles-nichols/SE-3210"
                 class="image fit"
-                ><img src="images/heapsort.png" alt="Heapsort Project"
+                ><img src="images/heapsort.png" alt=""
               /></a>
               <p>
                 <a href="https://github.com/miles-nichols/SE-3210"
                 target="_blank"
                 >GitHub Repository</a
-                >
-              </p>
-              <p>
+              ><br /><br />
                 As part of a team project for a systems programming course, I
                 implemented the <em>heapsort</em> algorithm entirely in LEGv8
                 assembly language, working closely with a partner to tackle
-                low-level memory and register management.
-              </p>
-              <p>
+                low-level memory and register management. This assignment was
+                designed to reinforce our understanding of ARMv8 architecture
+                and calling conventions while developing a modular, efficient
+                sorting algorithm without relying on nested loops.<br /><br />
+
                 I contributed to designing and coding multiple modular
                 procedures, each adhering strictly to the ARMv8 calling
                 conventions. These included custom memory access, stack frame
                 setup, and careful register allocation to preserve program
-                state.
-              </p>
-              <p>
-                We wrote unit tests and used the provided in-house
+                state. We wrote unit tests and used the provided in-house
                 <code>legv8emul</code> emulator on a Linux-based remote server
                 (Pyrite) to verify functionality and correctness. Debugging
                 involved using emulator-specific pseudo-instructions like
                 <code>PRNT</code>, <code>DUMP</code>, and <code>HALT</code>, as
-                traditional debugging tools were unavailable.
-              </p>
-              <p>
+                traditional debugging tools were unavailable.<br /><br />
+
+                The emulator environment simulated memory and stack separately,
+                emphasizing safe memory management and realistic hardware
+                constraints. We managed main memory directly using byte-level
+                addressing, handled 8-byte integers with precision, and
+                carefully tested each function in isolation before integration
+                to avoid cascading bugs.<br /><br />
+
                 This project not only sharpened my skills in assembly language
                 and low-level systems thinking but also improved my ability to
                 work in a collaborative environment under strict submission and
-                formatting guidelines.
+                formatting guidelines. The experience deepened my understanding
+                of computer architecture and reinforced best practices for
+                memory-safe, procedure-driven programming in a constrained
+                environment.
               </p>
             </article>
           </section>
@@ -627,9 +464,7 @@
                 ><img src="images/crepe.png" alt="C'est La Crêpe"
               /></a>
               <p>
-                <strong>C'est La Crêpe – Food Trailer Team Lead</strong>
-              </p>
-              <p>
+                <strong>C'est La Crêpe – Food Trailer Team Lead</strong><br /><br />
                 As a co-leader during the launch of
                 <a
                   href="https://www.instagram.com/cest.la.crepe.food.trailer/"
@@ -637,10 +472,8 @@
                   >C'est La Crêpe</a
                 >, a French-inspired food trailer based in Treynor, Iowa, I
                 played a pivotal role in establishing efficient operational
-                workflows and delivering exceptional customer experiences.
-              </p>
-              <p>
-                I supervised a team of employees, ensuring high-quality food
+                workflows and delivering exceptional customer experiences. I
+                supervised a team of employees, ensuring high-quality food
                 preparation and attentive service, which contributed to the
                 smooth day-to-day operations of the business. This role enhanced
                 my leadership skills, adaptability, and commitment to excellence
@@ -657,13 +490,9 @@
                 ><img src="images/pic06.jpg" alt="Iowa State University"
               /></a>
               <p>
-                <strong>Iowa State University</strong>
-              </p>
-              <p>
+                <strong>Iowa State University</strong><br /><br />
                 <strong>Bachelor's in Software Engineering</strong><br />
-                Graduation: Fall 2026
-              </p>
-              <p>
+                Graduation: Fall 2026<br /><br />
                 <strong>Master's in Artificial Intelligence</strong><br />
                 Graduation: Fall 2027
               </p>
@@ -753,15 +582,75 @@
 
     <!-- Enhanced UI Scripts -->
     <script>
+      // Binary Rain Background
+      const canvas = document.getElementById('binary-canvas');
+      const ctx = canvas.getContext('2d');
+      
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+      
+      const binary = "01";
+      const fontSize = 15;
+      const columns = Math.floor(canvas.width / (fontSize * 0.6));
+      const drops = Array(columns).fill(1);
+      
+      function drawBinaryRain() {
+        ctx.fillStyle = 'rgba(0, 10, 20, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.fillStyle = '#51CBEE';
+        ctx.font = `${fontSize}px monospace`;
+        
+        drops.forEach((y, i) => {
+          const text = binary.charAt(Math.floor(Math.random() * binary.length));
+          const x = i * fontSize * 0.6;
+          ctx.fillText(text, x, y * fontSize);
+          
+          if (y * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+          drops[i]++;
+        });
+      }
+      
+      setInterval(drawBinaryRain, 50);
+
+      // Kinetic Typography - Split headers into spans
+      function setupKineticText() {
+        document.querySelectorAll('.major h2, .posts h2').forEach(header => {
+          header.innerHTML = header.textContent.split('').map(char => 
+            `<span style="opacity:0;transform:translateY(20px)">${char === ' ' ? '&nbsp;' : char}</span>`
+          ).join('');
+        });
+      }
+
       // Initialize GSAP animations
       document.addEventListener('DOMContentLoaded', () => {
         gsap.registerPlugin(ScrollTrigger);
+        setupKineticText();
+        
+        // Animate kinetic headers
+        gsap.to(".major h2 span, .posts h2 span", {
+          y: 0,
+          opacity: 1,
+          stagger: 0.05,
+          duration: 0.5,
+          scrollTrigger: {
+            trigger: ".major h2, .posts h2",
+            start: "top 80%"
+          }
+        });
         
         // Animate cards on scroll
         gsap.utils.toArray(".post, .about-item, article").forEach(item => {
-          gsap.from(item, {
-            opacity: 0,
-            y: 20,
+          gsap.to(item, {
+            opacity: 1,
+            y: 0,
             duration: 0.8,
             scrollTrigger: {
               trigger: item,

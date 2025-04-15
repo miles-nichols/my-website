@@ -593,10 +593,10 @@ html, body {
       const canvas = document.getElementById('binary-canvas');
       const ctx = canvas.getContext('2d');
       
-      function resizeCanvas() {
-        canvas.width = window.innerWidth;
-        canvas.height = window.innerHeight;
-      }
+    function resizeCanvas() {
+  canvas.width = document.documentElement.scrollWidth;
+  canvas.height = document.documentElement.scrollHeight;
+}
       
       window.addEventListener('resize', resizeCanvas);
       resizeCanvas();

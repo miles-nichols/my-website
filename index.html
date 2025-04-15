@@ -64,33 +64,7 @@
       .post:hover, .about-item:hover, article:hover {
         transform: translateY(-5px) rotateX(10deg);
         box-shadow: 0 15px 30px rgba(81, 203, 238, 0.5);
-      }
-
-      /* 2. Binary Rain Background */
- 
-  html, body {
-  height: auto;
-  min-height: 100%;
-  background: transparent !important;
-}
-
-#wrapper {
-  background: transparent !important;
-  position: relative;
-  z-index: 0;
-}
-
-#binary-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  opacity: 0.4;
-  width: 100%;
-  height: 100vh;
-  pointer-events: none;
-}
-  
+      }   
 
       /* 3. Circuit Board Navigation */
       #nav {
@@ -149,9 +123,6 @@
     </style>
   </head>
   <body class="is-preload">
-    <!-- Binary Rain Canvas -->
-    <canvas id="binary-canvas"></canvas>
-
     <div id="wrapper" class="fade-in">
       <!-- Intro -->
       <div id="intro">
@@ -595,44 +566,6 @@
 
     <!-- Enhanced UI Scripts -->
     <script>
-      // Binary Rain Background
-      const canvas = document.getElementById('binary-canvas');
-      const ctx = canvas.getContext('2d');
-      
-    function resizeCanvas() {
-  canvas.width = document.documentElement.scrollWidth;
-  canvas.height = document.documentElement.scrollHeight;
-}
-      
-      window.addEventListener('resize', resizeCanvas);
-      resizeCanvas();
-      
-      const binary = "01";
-      const fontSize = 15;
-      const columns = Math.floor(canvas.width / (fontSize * 0.6));
-      const drops = Array(columns).fill(1);
-      
-      function drawBinaryRain() {
-        ctx.fillStyle = 'rgba(0, 10, 20, 0.05)';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
-        ctx.fillStyle = '#51CBEE';
-        ctx.font = `${fontSize}px monospace`;
-        
-        drops.forEach((y, i) => {
-          const text = binary.charAt(Math.floor(Math.random() * binary.length));
-          const x = i * fontSize * 0.6;
-          ctx.fillText(text, x, y * fontSize);
-          
-          if (y * fontSize > canvas.height && Math.random() > 0.975) {
-            drops[i] = 0;
-          }
-          drops[i]++;
-        });
-      }
-      
-      setInterval(drawBinaryRain, 50);
-
       // Kinetic Typography - Split headers into spans
       function setupKineticText() {
         document.querySelectorAll('.major h2, .posts h2').forEach(header => {

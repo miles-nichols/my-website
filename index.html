@@ -12,17 +12,29 @@
     <style>
       /* Color Palette */
       :root {
-        --primary: #51CBEE;           /* Light blue */
-        --secondary: #7BD5F5;         /* Slightly lighter blue */
-        --accent: #A3E4FF;            /* Even lighter blue */
-        --background: #0A192F;        /* Dark navy background */
-        --text-color: #E0E0E0;         /* Light gray text */
-        --card-background: rgba(81, 203, 238, 0.1); /* Semi-transparent blue for cards */
+        --primary: #A67B5B;           /* Medium brown (headings, accents) */
+        --secondary: #C89B7B;         /* Lighter brown (highlights) */
+        --accent: #E6D8C4;            /* Beige (card backgrounds) */
+        --background: #33292F;        /* Dark Brown (main background) */
+        --text-color: #4A3B35;        /* Dark brown (main text) */
+        --text-color-light: #736357;  /* Lighter text (descriptions) */
+        --card-background: rgba(230, 216, 196, 0.2); /* Beige with transparency for cards */
       }
 
       body {
         background-color: var(--background);
         color: var(--text-color);
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+      }
+
+      h1, h2, h3 {
+        color: var(--primary);
+        font-weight: bold;
+      }
+
+      p, li {
+        color: var(--text-color-light);
       }
 
       /* Original styles (mostly untouched) */
@@ -70,38 +82,48 @@
       .post, .about-item, article {
         background: var(--card-background);
         backdrop-filter: blur(10px);
-        border: 1px solid rgba(81, 203, 238, 0.2); /* Consistent border color */
-        box-shadow: 0 0 20px rgba(81, 203, 238, 0.3);
+        border: 1px solid rgba(166, 123, 91, 0.3); /* Brown border */
+        box-shadow: 0 0 15px rgba(166, 123, 91, 0.2); /* Brown shadow */
         transition: all 0.3s;
         border-radius: 10px;
         overflow: hidden;
       }
       .post:hover, .about-item:hover, article:hover {
         transform: translateY(-5px) rotateX(10deg);
-        box-shadow: 0 15px 30px rgba(81, 203, 238, 0.5);
+        box-shadow: 0 10px 20px rgba(166, 123, 91, 0.4); /* Stronger brown shadow */
       }
 
-      /* 2. Binary Rain Background - Color set in JavaScript (no CSS change) */
+      /* 2. Binary Rain Background - Modified for brown */
+      #binary-canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: -1;
+        opacity: 0.5;
+      }
 
       /* 3. Circuit Board Navigation */
       #nav {
-        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0,5 L100,5" stroke="%2351CBEE" stroke-width="0.5" stroke-dasharray="5,2"/></svg>') center center no-repeat;
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0,5 L100,5" stroke="%23A67B5B" stroke-width="0.5" stroke-dasharray="5,2"/></svg>') center center no-repeat;
         background-size: 80% 100%;
       }
       #nav .links {
-        background: rgba(10,25,30,0.8); /* Darker background for better contrast */
+        background: rgba(51, 41, 47, 0.8); /* Dark brown nav background */
         padding: 0 20px;
       }
       #nav a {
-        color: var(--text-color);         /* Updated to the defined text color */
+        color: var(--text-color);
       }
       #nav a:hover {
-        color: var(--primary) !important;
+        color: var(--secondary) !important;
       }
 
-      /* 4. Kinetic Typography Headers - No color changes needed */
+      /* 4. Kinetic Typography Headers */
       .major h2, .posts h2 {
         overflow: hidden;
+        color: var(--primary);
       }
       .major h2 span, .posts h2 span {
         display: inline-block;
@@ -109,10 +131,10 @@
 
       /* 5. Microinteraction Buttons */
       .button, .actions.special .button {
-        background: linear-gradient(90deg, var(--secondary) 0%, var(--accent) 100%);
+        background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
         background-size: 150% auto;
         background-position: left center;
-        color: #ffffff;
+        color: #fff;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
         transition: all 0.4s;
         border: none;

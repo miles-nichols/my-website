@@ -66,9 +66,8 @@
         box-shadow: 0 15px 30px rgba(81, 203, 238, 0.5);
       }
 
-      /* 2. Binary Rain Background */
       #binary-canvas {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   z-index: -1;
@@ -77,9 +76,22 @@
   height: 100%;
   pointer-events: none;
 }
+
 html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background: transparent !important;
+}
+
+body {
   position: relative;
 }
+
+/* Make the wrapper background transparent so canvas shows through */
+#wrapper {
+  background: transparent !important;
+}  
 
       /* 3. Circuit Board Navigation */
       #nav {
@@ -287,11 +299,6 @@ html, body {
                 ><img src="images/cpre288.png" alt=""
               /></a>
               <p>
-                <!-- <a
-                  href="https://github.com/miles-nichols/Robot-Navigation"
-                  target="_blank"
-                  >GitHub Repository</a
-                ><br /><br /> -->
                 <p>
                   <a
                     href="https://github.com/miles-nichols/Robot-Navigation"

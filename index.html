@@ -10,7 +10,22 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <style>
-      /* Original styles */
+      /* Color Palette */
+      :root {
+        --primary: #51CBEE;           /* Light blue */
+        --secondary: #6e48aa;         /* Purple */
+        --accent: #9d50bb;            /* Lavender */
+        --background: #0A192F;        /* Dark navy background */
+        --text-color: #E0E0E0;         /* Light gray text */
+        --card-background: rgba(81, 203, 238, 0.1); /* Semi-transparent blue for cards */
+      }
+
+      body {
+        background-color: var(--background);
+        color: var(--text-color);
+      }
+
+      /* Original styles (mostly untouched) */
       .page-section {
         display: none;
       }
@@ -50,12 +65,12 @@
         }
       }
 
-      /* New UI Enhancements */
+      /* New UI Enhancements (Color Adjustments) */
       /* 1. Holographic Card Effect */
       .post, .about-item, article {
-        background: rgba(255,255,255,0.1);
+        background: var(--card-background);
         backdrop-filter: blur(10px);
-        border: 1px solid rgba(255,255,255,0.2);
+        border: 1px solid rgba(81, 203, 238, 0.2); /* Consistent border color */
         box-shadow: 0 0 20px rgba(81, 203, 238, 0.3);
         transition: all 0.3s;
         border-radius: 10px;
@@ -66,16 +81,7 @@
         box-shadow: 0 15px 30px rgba(81, 203, 238, 0.5);
       }
 
-      /* 2. Binary Rain Background */
-      #binary-canvas {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        z-index: -1;
-        opacity: 0.5;
-      }
+      /* 2. Binary Rain Background - Color set in JavaScript (no CSS change) */
 
       /* 3. Circuit Board Navigation */
       #nav {
@@ -83,16 +89,23 @@
         background-size: 80% 100%;
       }
       #nav .links {
-        background: rgba(10,25,30,0.8);
+        background: rgba(10,25,47,0.8); /* Darker background for better contrast */
         padding: 0 20px;
       }
+      #nav a {
+        color: var(--text-color);         /* Updated to the defined text color */
+      }
       #nav a:hover {
-        color: #51CBEE !important;
+        color: var(--primary) !important;
       }
 
-      /* 4. Kinetic Typography Headers */
+      /* 4. Kinetic Typography Headers - No color changes needed */
       .major h2, .posts h2 {
         overflow: hidden;
+        color: var(--primary); /* Use primary color for headers */
+      }
+      .major h2 a, .posts h2 a{
+          color: var(--primary);
       }
       .major h2 span, .posts h2 span {
         display: inline-block;
@@ -100,7 +113,7 @@
 
       /* 5. Microinteraction Buttons */
       .button, .actions.special .button {
-        background: linear-gradient(90deg, #6e48aa 0%, #9d50bb 100%);
+        background: linear-gradient(90deg, var(--secondary) 0%, var(--accent) 100%);
         background-size: 150% auto;
         background-position: left center;
         color: #ffffff;
@@ -132,6 +145,7 @@
         }
       }
     </style>
+
   </head>
   <body class="is-preload">
     <!-- Binary Rain Canvas -->

@@ -10,36 +10,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
     <style>
-      /* Color Palette */
-      :root {
-        --primary: #A67B5B;           /* Medium brown (headings, accents) */
-        --secondary: #C89B7B;         /* Lighter brown (highlights) */
-        --accent: #E6D8C4;            /* Beige (card backgrounds) */
-        --background: #33292F;        /* Dark Brown (main background) */
-        --text-color: #4A3B35;        /* Dark brown (main text) */
-        --text-color-light: #736357;  /* Lighter text (descriptions) */
-        --card-background: rgba(230, 216, 196, 0.2); /* Beige with transparency for cards */
-      }
-
-      body {
-        background-color: var(--background);
-        color: var(--text-color);
-        font-family: Arial, sans-serif;
-        line-height: 1.6;
-        margin: 0; /*Added to ensure full background coverage*/
-        overflow: hidden; /* Added to prevent scrollbars */
-      }
-
-      h1, h2, h3 {
-        color: var(--primary);
-        font-weight: bold;
-      }
-
-      p, li {
-        color: var(--text-color-light);
-      }
-
-      /* Original styles (mostly untouched) */
+      /* Original styles */
       .page-section {
         display: none;
       }
@@ -52,9 +23,9 @@
         to { opacity: 1; }
       }
       #intro { margin-bottom: 2rem; }
-      #home.active #intro,
+      #home.active #intro { display: block; }
       #projects.active #intro,
-      #about.active #intro { display: block; }
+      #about.active #intro { display: none; }
       .resume-image {
         width: 100%;
         border: 1px solid #ddd;
@@ -79,23 +50,23 @@
         }
       }
 
-      /* New UI Enhancements (Color Adjustments) */
+      /* New UI Enhancements */
       /* 1. Holographic Card Effect */
       .post, .about-item, article {
-        background: var(--card-background);
+        background: rgba(255,255,255,0.1);
         backdrop-filter: blur(10px);
-        border: 1px solid rgba(166, 123, 91, 0.3); /* Brown border */
-        box-shadow: 0 0 15px rgba(166, 123, 91, 0.2); /* Brown shadow */
+        border: 1px solid rgba(255,255,255,0.2);
+        box-shadow: 0 0 20px rgba(81, 203, 238, 0.3);
         transition: all 0.3s;
         border-radius: 10px;
         overflow: hidden;
       }
       .post:hover, .about-item:hover, article:hover {
         transform: translateY(-5px) rotateX(10deg);
-        box-shadow: 0 10px 20px rgba(166, 123, 91, 0.4); /* Stronger brown shadow */
+        box-shadow: 0 15px 30px rgba(81, 203, 238, 0.5);
       }
 
-      /* 2. Binary Rain Background - Modified for brown */
+      /* 2. Binary Rain Background */
       #binary-canvas {
         position: fixed;
         top: 0;
@@ -103,29 +74,25 @@
         width: 100%;
         height: 100%;
         z-index: -1;
-        opacity: 0.7;
+        opacity: 0.5;
       }
 
       /* 3. Circuit Board Navigation */
       #nav {
-        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0,5 L100,5" stroke="%23A67B5B" stroke-width="0.5" stroke-dasharray="5,2"/></svg>') center center no-repeat;
+        background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 10" preserveAspectRatio="none"><path d="M0,5 L100,5" stroke="%2351CBEE" stroke-width="0.5" stroke-dasharray="5,2"/></svg>') center center no-repeat;
         background-size: 80% 100%;
       }
       #nav .links {
-        background: rgba(51, 41, 47, 0.8); /* Dark brown nav background */
+        background: rgba(10,25,30,0.8);
         padding: 0 20px;
       }
-      #nav a {
-        color: var(--text-color);
-      }
       #nav a:hover {
-        color: var(--secondary) !important;
+        color: #51CBEE !important;
       }
 
       /* 4. Kinetic Typography Headers */
       .major h2, .posts h2 {
         overflow: hidden;
-        color: var(--primary);
       }
       .major h2 span, .posts h2 span {
         display: inline-block;
@@ -133,10 +100,10 @@
 
       /* 5. Microinteraction Buttons */
       .button, .actions.special .button {
-        background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+        background: linear-gradient(90deg, #6e48aa 0%, #9d50bb 100%);
         background-size: 150% auto;
         background-position: left center;
-        color: #fff;
+        color: #ffffff;
         text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
         transition: all 0.4s;
         border: none;
@@ -170,7 +137,6 @@
     <!-- Binary Rain Canvas -->
     <canvas id="binary-canvas"></canvas>
 
-    <!-- Rest of your HTML content remains exactly the same -->
     <div id="wrapper" class="fade-in">
       <!-- Intro -->
       <div id="intro">
@@ -220,6 +186,7 @@
           </li>
         </ul>
       </nav>
+
       <!-- ==================== -->
       <!-- HOME PAGE CONTENT -->
       <!-- ==================== -->
@@ -308,25 +275,31 @@
             <article>
               <header>
                 <span class="date">November 2024 - December 2024</span>
-                <h2><a href="#">Autonomous Navigation Robot</a></h2>
-              </header>
+				<h2><a href="#"></a>Autonomous Navigation      Robot</a></h2>
+			</header>
               <a
                 href="https://github.com/miles-nichols/Robot-Navigation"
                 class="image fit"
                 ><img src="images/cpre288.png" alt=""
               /></a>
               <p>
-                <a
+                <!-- <a
                   href="https://github.com/miles-nichols/Robot-Navigation"
                   target="_blank"
                   >GitHub Repository</a
-                >
-                |
-                <a
-                  href="assets/files/proposal.docx"
-                  target="_blank"
-                  >Project Proposal</a
-                ><br /><br />
+                ><br /><br /> -->
+                <p>
+                  <a
+                    href="https://github.com/miles-nichols/Robot-Navigation"
+                    target="_blank"
+                    >GitHub Repository</a
+                  >
+                  |
+                  <a
+                    href="assets/files/proposal.docx"
+                    target="_blank"
+                    >Project Proposal</a
+                  ><br /><br />
                 Led the design and development of a microcontroller-based robot
                 capable of autonomously navigating a predefined, unknown course.
                 Managed a team of six by streamlining collaboration through clear
@@ -366,7 +339,9 @@
                 through an intuitive and responsive interface. As a front-end
                 developer on a team of four, I collaborated closely with another
                 front-end engineer and two back-end developers to bring this
-                project to life.<br /><br />... I led the development of the user interface using Java and XML
+                project to life.<br /><br />
+
+                I led the development of the user interface using Java and XML
                 in Android Studio, prioritizing a clean layout, smooth
                 navigation, and mobile responsiveness. I structured the
                 front-end components with modularity and reusability in mind,
@@ -409,17 +384,40 @@
                 <a href="https://github.com/miles-nichols/SE-3210"
                 target="_blank"
                 >GitHub Repository</a
-                ><br /><br />
-                Implemented a heapsort algorithm in LEGv8 assembly language,
-                focusing on optimizing performance for embedded systems. Conducted
-                extensive research into LEGv8 assembly instructions, memory
-                management, and ARM architecture to effectively translate a
-                high-level heapsort algorithm into assembly code. Developed a
-                thorough testing strategy using both simulated and hardware
-                environments to validate the accuracy and efficiency of the
-                implementation. The heapsort algorithm was optimized by reducing
-                unnecessary memory accesses and streamlining data comparisons
-                within the assembly code.
+              ><br /><br />
+                As part of a team project for a systems programming course, I
+                implemented the <em>heapsort</em> algorithm entirely in LEGv8
+                assembly language, working closely with a partner to tackle
+                low-level memory and register management. This assignment was
+                designed to reinforce our understanding of ARMv8 architecture
+                and calling conventions while developing a modular, efficient
+                sorting algorithm without relying on nested loops.<br /><br />
+
+                I contributed to designing and coding multiple modular
+                procedures, each adhering strictly to the ARMv8 calling
+                conventions. These included custom memory access, stack frame
+                setup, and careful register allocation to preserve program
+                state. We wrote unit tests and used the provided in-house
+                <code>legv8emul</code> emulator on a Linux-based remote server
+                (Pyrite) to verify functionality and correctness. Debugging
+                involved using emulator-specific pseudo-instructions like
+                <code>PRNT</code>, <code>DUMP</code>, and <code>HALT</code>, as
+                traditional debugging tools were unavailable.<br /><br />
+
+                The emulator environment simulated memory and stack separately,
+                emphasizing safe memory management and realistic hardware
+                constraints. We managed main memory directly using byte-level
+                addressing, handled 8-byte integers with precision, and
+                carefully tested each function in isolation before integration
+                to avoid cascading bugs.<br /><br />
+
+                This project not only sharpened my skills in assembly language
+                and low-level systems thinking but also improved my ability to
+                work in a collaborative environment under strict submission and
+                formatting guidelines. The experience deepened my understanding
+                of computer architecture and reinforced best practices for
+                memory-safe, procedure-driven programming in a constrained
+                environment.
               </p>
             </article>
           </section>
@@ -434,74 +432,149 @@
           <article class="post featured">
             <header class="major">
               <h2>About Me</h2>
-              <p>More information about my background and interests</p>
+              <p>My education, work experience, and resume</p>
             </header>
           </article>
 
-          <section class="about-grid">
-            <!-- Education -->
-            <div class="about-item">
-              <h3>Education</h3>
-              <p>
-                <strong>Iowa State University</strong><br />
-                Bachelor of Science in Software Engineering<br />
-                Expected Graduation: May 2025
-              </p>
-            </div>
-
-            <!-- Skills -->
-            <div class="about-item">
-              <h3>Technical Skills</h3>
-              <ul>
-                <li><strong>Languages:</strong> Java, Python, C, C++, JavaScript,
-                  HTML, CSS, SQL, Assembly</li>
-                <li><strong>Frameworks/Tools:</strong> Android Studio, Git,
-                  Spring, React, Node.js, AWS, Docker, Kubernetes</li>
-                <li><strong>Databases:</strong> MySQL, MongoDB, PostgreSQL</li>
-              </ul>
-            </div>
-
-            <!-- Experience -->
-            <div class="about-item">
-              <h3>Experience</h3>
-              <p>
-                <strong>Software Engineering Intern</strong><br />
-                Acme Corp | Summer 2024<br />
-                Developed new features for the company's flagship product
-              </p>
-            </div>
-
-            <!-- Interests -->
-            <div class="about-item">
-              <h3>Interests</h3>
-              <p>
-                Passionate about AI, machine learning, and cybersecurity. Also
-                interested in robotics and IoT. Enjoy staying up-to-date with the
-                latest tech trends.
-              </p>
-            </div>
-          </section>
-
-          <section class="about-grid">
-            <!-- Resume -->
-            <div class="about-item">
-              <h3>Résumé</h3>
-              <a href="assets/files/resume.pdf" target="_blank">
+          <div class="about-grid">
+            <!-- Top Left: Resume -->
+            <article class="about-item">
+              <header>
+                <h2>My Resume</h2>
+              </header>
+              <a href="assets/files/resume.pdf" target="_blank" class="image fit">
                 <img
-                  src="images/resume.png"
-                  alt="Resume"
+                  src="images/updated and w highschool.jpg"
+                  alt="Miles Nichols Resume Preview"
                   class="resume-image"
                 />
               </a>
-            </div>
-          </section>
+              <ul class="actions special">
+                <li>
+                  <a href="assets/files/resume.pdf" class="button" target="_blank"
+                    >View Full Resume</a
+                  >
+                </li>
+              </ul>
+            </article>
+
+            <!-- Top Right: Work Experience -->
+            <article class="about-item">
+              <header>
+                <h2>Work Experience</h2>
+              </header>
+              <a href="#" class="image fit"
+                ><img src="images/crepe.png" alt="C'est La Crêpe"
+              /></a>
+              <p>
+                <strong>C'est La Crêpe – Food Trailer Team Lead</strong><br /><br />
+                As a co-leader during the launch of
+                <a
+                  href="https://www.instagram.com/cest.la.crepe.food.trailer/"
+                  target="_blank"
+                  >C'est La Crêpe</a
+                >, a French-inspired food trailer based in Treynor, Iowa, I
+                played a pivotal role in establishing efficient operational
+                workflows and delivering exceptional customer experiences. I
+                supervised a team of employees, ensuring high-quality food
+                preparation and attentive service, which contributed to the
+                smooth day-to-day operations of the business. This role enhanced
+                my leadership skills, adaptability, and commitment to excellence
+                in a fast-paced, customer-centric environment.
+              </p>
+            </article>
+
+            <!-- Bottom Left: Education -->
+            <article class="about-item">
+              <header>
+                <h2>Education</h2>
+              </header>
+              <a href="#" class="image fit"
+                ><img src="images/pic06.jpg" alt="Iowa State University"
+              /></a>
+              <p>
+                <strong>Iowa State University</strong><br /><br />
+                <strong>Bachelor's in Software Engineering</strong><br />
+                Graduation: Fall 2026<br /><br />
+                <strong>Master's in Artificial Intelligence</strong><br />
+                Graduation: Fall 2027
+              </p>
+            </article>
+
+            <!-- Bottom Right: Contact -->
+            <article class="about-item">
+              <header>
+                <h2>Contact</h2>
+              </header>
+              <div class="box">
+                <h3>Let's Connect</h3>
+                <ul class="alt">
+                  <li><strong>Email:</strong> miles@voilatech.com</li>
+                  <li><strong>Phone:</strong> (712) 355-8178</li>
+                  <li>
+                    <strong>LinkedIn:</strong>
+                    <a
+                      href="https://www.linkedin.com/in/miles-nichols"
+                      target="_blank"
+                      >linkedin.com/in/miles-nichols</a
+                    >
+                  </li>
+                  <li>
+                    <strong>GitHub:</strong>
+                    <a href="https://github.com/miles-nichols" target="_blank"
+                      >github.com/miles-nichols</a
+                    >
+                  </li>
+                  <li>
+                    <strong>Website:</strong>
+                    <a
+                      href="https://miles-nichols.github.io/my-website/"
+                      target="_blank"
+                      >miles-nichols.github.io</a
+                    >
+                  </li>
+                </ul>
+              </div>
+            </article>
+          </div>
         </div>
       </div>
+
+      <!-- Footer -->
+      <footer id="footer">
+        <section class="split contact">
+          <section>
+            <h3>Phone</h3>
+            <p><a href="tel:7123558178">(712) 355-8178</a></p>
+          </section>
+          <section>
+            <h3>Email</h3>
+            <p><a href="mailto:miles@vollatech.com">miles@voilatech.com</a></p>
+          </section>
+          <section>
+            <h3>Social</h3>
+            <ul class="icons alt">
+              <li>
+                <a
+                  href="https://www.linkedin.com/in/miles-nichols"
+                  class="icon brands alt fa-linkedin"
+                  ><span class="label">LinkedIn</span></a
+                >
+              </li>
+              <li>
+                <a
+                  href="https://github.com/miles-nichols"
+                  class="icon brands alt fa-github"
+                  ><span class="label">GitHub</span></a
+                >
+              </li>
+            </ul>
+          </section>
+        </section>
+      </footer>
     </div>
 
-    <!-- ==================== -->
     <!-- Scripts -->
-    <!-- ==================== -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery.scrollex.min.js"></script>
     <script src="assets/js/jquery.scrolly.min.js"></script>
@@ -509,45 +582,124 @@
     <script src="assets/js/breakpoints.min.js"></script>
     <script src="assets/js/util.js"></script>
     <script src="assets/js/main.js"></script>
-    <script>
-        const canvas = document.getElementById('binary-canvas');
-        const ctx = canvas.getContext('2d');
 
+    <!-- Enhanced UI Scripts -->
+    <script>
+      // Binary Rain Background
+      const canvas = document.getElementById('binary-canvas');
+      const ctx = canvas.getContext('2d');
+      
+      function resizeCanvas() {
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
-
-        const fontSize = 16;
-        const columns = canvas.width/fontSize;
-
-        const drops = [];
-        for(let x = 0; x < columns; x++)
-            drops[x] = 1;
-
-        function draw()
-        {
-            ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
-            ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-            ctx.fillStyle = '#0F0';
-            ctx.font = fontSize + 'px monospace';
-
-            for(let i = 0; i < drops.length; i++)
-            {
-                const text = Math.random() < 0.5 ? 1 : 0;
-                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
-
-                if(drops[i] * fontSize > canvas.height && Math.random() > 0.975)
-                    drops[i] = 0;
-
-                drops[i]++;
-            }
-        }
-        setInterval(draw, 33);
-
-        window.addEventListener('resize', function() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+      }
+      
+      window.addEventListener('resize', resizeCanvas);
+      resizeCanvas();
+      
+      const binary = "01";
+      const fontSize = 15;
+      const columns = Math.floor(canvas.width / (fontSize * 0.6));
+      const drops = Array(columns).fill(1);
+      
+      function drawBinaryRain() {
+        ctx.fillStyle = 'rgba(0, 10, 20, 0.05)';
+        ctx.fillRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.fillStyle = '#51CBEE';
+        ctx.font = `${fontSize}px monospace`;
+        
+        drops.forEach((y, i) => {
+          const text = binary.charAt(Math.floor(Math.random() * binary.length));
+          const x = i * fontSize * 0.6;
+          ctx.fillText(text, x, y * fontSize);
+          
+          if (y * fontSize > canvas.height && Math.random() > 0.975) {
+            drops[i] = 0;
+          }
+          drops[i]++;
         });
+      }
+      
+      setInterval(drawBinaryRain, 50);
+
+      // Kinetic Typography - Split headers into spans
+      function setupKineticText() {
+        document.querySelectorAll('.major h2, .posts h2').forEach(header => {
+          header.innerHTML = header.textContent.split('').map(char => 
+            `<span style="opacity:0;transform:translateY(20px)">${char === ' ' ? '&nbsp;' : char}</span>`
+          ).join('');
+        });
+      }
+
+      // Initialize GSAP animations
+      document.addEventListener('DOMContentLoaded', () => {
+        gsap.registerPlugin(ScrollTrigger);
+        setupKineticText();
+        
+        // Animate kinetic headers
+        gsap.to(".major h2 span, .posts h2 span", {
+          y: 0,
+          opacity: 1,
+          stagger: 0.05,
+          duration: 0.5,
+          scrollTrigger: {
+            trigger: ".major h2, .posts h2",
+            start: "top 80%"
+          }
+        });
+        
+        // Animate cards on scroll
+        gsap.utils.toArray(".post, .about-item, article").forEach(item => {
+          gsap.to(item, {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            scrollTrigger: {
+              trigger: item,
+              start: "top 90%"
+            }
+          });
+        });
+      });
+
+      // Original page navigation script
+      $(document).ready(function() {
+        function loadPage() {
+          var hash = window.location.hash.substring(1);
+          var validPages = ['home', 'projects', 'about'];
+          
+          if (hash && validPages.includes(hash)) {
+            showPage(hash);
+          } else {
+            showPage('home');
+          }
+        }
+        
+        function showPage(page) {
+          $('.page-section').removeClass('active');
+          $('#' + page).addClass('active');
+          $('.links li').removeClass('active');
+          $('.links li a[data-page="' + page + '"]').parent().addClass('active');
+          window.scrollTo(0, 0);
+          
+          if (history.pushState) {
+            history.pushState(null, null, '#' + page);
+          }
+        }
+        
+        $('.page-link').click(function(e) {
+          e.preventDefault();
+          var page = $(this).data('page');
+          showPage(page);
+        });
+        
+        window.addEventListener('popstate', function() {
+          loadPage();
+        });
+        
+        loadPage();
+      });
     </script>
   </body>
 </html>
